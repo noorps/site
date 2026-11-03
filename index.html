@@ -22,8 +22,10 @@
     unicode-range:U+1319D-1319F;font-display:swap}
   .glyph,.fish,h2 .g{font-family:"Noto Sans Egyptian Hieroglyphs","Segoe UI Historic","Apple Symbols",serif}
   .fish{color:var(--soft);letter-spacing:.4em;font-size:20px;margin:0}
-  .me{display:block;width:92px;height:92px;border-radius:50%;object-fit:cover;margin:18px 0 2px;
-    border:2px solid var(--rule);background:var(--panel)}
+  .hero{display:flex;justify-content:space-between;align-items:flex-start;gap:32px}
+  .hero .txt{min-width:0}
+  .me{flex:none;width:150px;height:150px;border-radius:12px;object-fit:cover;margin-top:40px;
+    border:1px solid var(--rule);background:var(--panel)}
   h1{font:600 46px/1.08 "Newsreader",Georgia,serif;margin:18px 0 10px;letter-spacing:-.015em}
   .claim{font:400 23px/1.45 "Newsreader",Georgia,serif;margin:0 0 16px;max-width:30ch}
   .claim b{font-weight:600;color:var(--deep);font-style:italic}
@@ -73,6 +75,7 @@
   .verdict.under{color:var(--muted)}
   .verdict .big{font:600 25px/1 "Newsreader",Georgia,serif;margin-right:3px}
   .why{font-size:14.5px!important;color:var(--muted);margin:4px 0 0!important}
+  @media(max-width:600px){.hero{flex-direction:column-reverse;gap:8px}.me{margin-top:0}}
   @media(max-width:430px){.hero{padding:48px 0 6px}h1{font-size:35px}.claim{font-size:20px}
     .bar .lbl{width:66px}.bar .val{width:62px}.row{flex-direction:column;gap:1px}
     .pick .k{width:100%}}
@@ -81,8 +84,8 @@
 <body><main>
 
   <div class="hero">
+    <div class="txt">
     <p class="fish">𓆝 𓆟 𓆞</p>
-    <img class="me" src="img/me.jpg" width="92" height="92" alt="purnoor sharma">
     <h1>hi, i'm purnoor!</h1>
     <p class="degree">computer science <span class="amp">+</span> informatics @ ut austin, may 2028</p>
     <p class="claim"><b>cs for the backend.</b><br><b>informatics for the user.</b></p>
@@ -90,6 +93,8 @@
     <p class="links">
       <a href="https://github.com/noorps">github</a><span>·</span><a href="https://linkedin.com/in/purnoor-sharma">linkedin</a><span>·</span><a href="mailto:purnoor.sharma@utexas.edu">email</a><span>·</span><a href="/resume.pdf">résumé</a>
     </p>
+    </div>
+    <img class="me" src="img/me.jpg" width="150" height="150" alt="purnoor sharma">
   </div>
 
   <h2><span class="g">𓆟</span>what i've built</h2>
