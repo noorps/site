@@ -5,7 +5,8 @@
 <meta name="description" content="purnoor sharma — cs and informatics at ut austin. cuda kernels, c++ systems, and things people actually use.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=DM+Sans:wght@400;500&family=Noto+Sans+Egyptian+Hieroglyphs&display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/fish.woff2" as="font" type="font/woff2" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{--bg:#FAF8F1;--panel:#F2F0E4;--text:#2B2E28;--muted:#6E7566;
     --matcha:#6E9460;--deep:#4C6B42;--soft:#AFC7A3;--rule:#E7E2D4;--ref:#C5BCA2;--track:#E3E0D1}
@@ -15,7 +16,10 @@
   main{max-width:660px;margin:0 auto;padding:0 20px 110px}
   .hero{padding:72px 0 10px}
   /* most Windows and Android installs ship no font covering Egyptian Hieroglyphs (U+13000),
-     so the fish fall back to tofu boxes without this webfont. */
+     so the fish fall back to tofu boxes without this webfont. self-hosted subset of
+     Noto Sans Egyptian Hieroglyphs (OFL) holding only the three fish, 2 KB instead of 399 KB. */
+  @font-face{font-family:"Noto Sans Egyptian Hieroglyphs";src:url(fonts/fish.woff2) format("woff2");
+    unicode-range:U+1319D-1319F;font-display:swap}
   .glyph,.fish,h2 .g{font-family:"Noto Sans Egyptian Hieroglyphs","Segoe UI Historic","Apple Symbols",serif}
   .fish{color:var(--soft);letter-spacing:.4em;font-size:20px;margin:0}
   h1{font:600 46px/1.08 "Newsreader",Georgia,serif;margin:18px 0 10px;letter-spacing:-.015em}
