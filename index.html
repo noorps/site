@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="fonts/fish.woff2" as="font" type="font/woff2" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ladder/board.css">
 <style>
   :root{--bg:#FAF8F1;--panel:#F2F0E4;--text:#2B2E28;--muted:#6E7566;
     --matcha:#6E9460;--deep:#4C6B42;--soft:#AFC7A3;--rule:#E7E2D4;--ref:#C5BCA2;--track:#E3E0D1}
@@ -55,12 +56,6 @@
   .bar .fill.hi{background:var(--matcha)}
   .bar .fill.ref{background:var(--ref)}
   .bar .val{font:12.5px ui-monospace,Menlo,monospace;color:var(--deep);width:74px;text-align:right;flex:none}
-  .lb{display:flex;gap:5px;align-items:flex-end;height:84px;border-top:2px dashed var(--deep);margin:4px 0 12px}
-  .lb span{flex:1;background:var(--soft);border-radius:3px 3px 0 0;min-width:0}
-  .lb-ctl{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin:0 0 12px;font-size:13.5px;color:var(--muted)}
-  .lb-ctl label{display:flex;align-items:center;gap:8px}
-  .lb-ctl input{width:120px;accent-color:var(--matcha);margin:0}
-  .lb-ctl output{font:12.5px ui-monospace,Menlo,monospace;color:var(--deep);min-width:4ch}
   .sep{height:1px;background:var(--track);margin:11px 0 9px}
   .row{display:flex;justify-content:space-between;gap:16px;align-items:baseline}
   .row .when{font:12.5px ui-monospace,Menlo,monospace;color:#8D937F;white-space:nowrap}
@@ -106,6 +101,16 @@
   <h2><span class="g">𓆟</span>what i've built</h2>
 
   <div class="item">
+    <h3><a href="ladder/">ladder</a></h3>
+    <p>an assembly line balancing solver and a line simulator. two heuristics and an exact cp-sat model measured against published optima on the classic benchmark sets, then a simulation of how much of a paper balance survives variable station times and finite buffers. this is sawyer's 30 task line: drag the tasks (or tab to one and use the arrow keys), keep every station under the takt, then compare with the proven optimum. <a href="ladder/">full page</a> for more room.</p>
+    <div id="ladder-board"></div>
+    <p style="margin-top:14px">then run it: station times vary, buffers absorb some of it.</p>
+    <div id="ladder-sim"></div>
+    <p class="nums">cp-sat 0.56% mean gap on 269 scholl instances · rpw 3.9% in a millisecond · cv 0.3 with no buffer costs 22% of the paper rate</p>
+    <p class="stack">python, or-tools cp-sat, simpy, vanilla js</p>
+  </div>
+
+  <div class="item">
     <h3><a href="https://github.com/noorps/cuconv">cuconv</a></h3>
     <p>a 2d convolution written in cuda four times, each version measured against cudnn on the same inputs in the same process. i wanted to find out how much of a vendor library a hand-written kernel can reach on a real card, and to be able to say exactly what is in the way of the rest. pick a layer and see.</p>
 
@@ -144,23 +149,6 @@
       <figcaption>resnet18's first layer run both ways · max difference across 802,816 outputs: exactly 0</figcaption>
     </figure>
     <p class="stack">cuda, c++, nsight compute, cudnn, pytorch</p>
-  </div>
-
-  <div class="item">
-    <h3><a href="ladder/">ladder</a></h3>
-    <p>an assembly line balancing solver and a line simulator. two heuristics and an exact cp-sat model measured against published optima on the classic benchmark sets, then a simulation of how much of a paper balance survives variable station times and finite buffers. the <a href="ladder/">full page</a> lets you drag the tasks yourself and compare with the proven optimum.</p>
-    <figure>
-      <div class="lb" aria-label="station loads of the optimal balance; the dashed line is the takt"><span style="height:100.0%" title="station 1: 41 s"></span><span style="height:97.6%" title="station 2: 40 s"></span><span style="height:97.6%" title="station 3: 40 s"></span><span style="height:100.0%" title="station 4: 41 s"></span><span style="height:97.6%" title="station 5: 40 s"></span><span style="height:97.6%" title="station 6: 40 s"></span><span style="height:100.0%" title="station 7: 41 s"></span><span style="height:100.0%" title="station 8: 41 s"></span></div>
-      <div class="lb-ctl">
-        <label for="lb-cv">variability<input id="lb-cv" type="range" min="0" max="1" step="0.05" value="0.3"><output id="lb-cv-o">0.30</output></label>
-        <label for="lb-buf">buffer<input id="lb-buf" type="range" min="0" max="8" step="1" value="0"><output id="lb-buf-o">0</output></label>
-      </div>
-      <div class="bar"><span class="lbl">paper rate</span><span class="track"><span class="fill ref" id="lb-paper" style="width:100%"></span></span><span class="val" id="lb-paper-v"></span></div>
-      <div class="bar"><span class="lbl">simulated</span><span class="track"><span class="fill hi" id="lb-sim" style="width:0%"></span></span><span class="val" id="lb-sim-v"></span></div>
-      <figcaption id="lb-cap">sawyer's 30 task line, 8 stations at a 41 s takt, proven optimal · 3000 units simulated in your browser</figcaption>
-    </figure>
-    <p class="nums">cp-sat 0.56% mean gap on 269 scholl instances · rpw 3.9% in a millisecond · cv 0.3 with no buffer costs 22% of the paper rate</p>
-    <p class="stack">python, or-tools cp-sat, simpy, vanilla js</p>
   </div>
 
   <div class="item">
@@ -260,21 +248,14 @@ for (const c of document.querySelectorAll(".chip")){
 }
 render();
 </script>
+<script src="ladder/data/data.js"></script>
 <script src="ladder/sim.js"></script>
+<script src="ladder/board.js"></script>
 <script>
 (function(){
-  const loads=[41, 40, 40, 41, 40, 40, 41, 41], c=41, paper=3600/c;
-  const cv=document.getElementById("lb-cv"), buf=document.getElementById("lb-buf");
-  function run(){
-    const r=window.LadderSim.simulate(loads, Number(cv.value), Number(buf.value), 1, 300, 3000);
-    const uph=3600*r.throughput;
-    document.getElementById("lb-cv-o").textContent=Number(cv.value).toFixed(2);
-    document.getElementById("lb-buf-o").textContent=buf.value;
-    document.getElementById("lb-paper-v").textContent=paper.toFixed(1)+" uph";
-    document.getElementById("lb-sim").style.width=(100*uph/paper).toFixed(1)+"%";
-    document.getElementById("lb-sim-v").textContent=uph.toFixed(1)+" uph";
-  }
-  cv.addEventListener("input", run); buf.addEventListener("input", run); run();
+  const b = window.LadderBoard.create(window.LADDER_DATA, {columnHeight: 170});
+  b.mountBoard(document.getElementById("ladder-board"));
+  b.mountSim(document.getElementById("ladder-sim"));
 })();
 </script>
 </body></html>

@@ -9,54 +9,25 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="board.css">
 </head>
 <body>
 <main>
   <h1>ladder</h1>
-  <p class="lede">a fish ladder is a row of stepped pools: the slowest pool caps the rate of the whole thing. this is
-    <a href="https://assembly-line-balancing.de/salbp/">sawyer's 30 task line</a>, a benchmark from 1993. drag tasks
-    between stations (or tab to a task and use the arrow keys). a task cannot sit upstream of anything it depends on.
-    keep every station under the takt, use as few stations as you can, then see how close you got to the proven optimum.</p>
+  <p class="lede">a fish ladder is a row of stepped pools and the slowest pool caps the rate; this is
+    <a href="https://assembly-line-balancing.de/salbp/">sawyer's 30 task line</a>, a 1993 benchmark.</p>
 
-  <div class="controls">
-    <div class="ctl"><label for="ct">cycle time</label><input id="ct" type="range" min="0" max="3" step="1" value="2" aria-valuetext="41 s"><output for="ct" id="ct-out" class="num">41 s</output></div>
-    <button id="btn-reset" type="button">reset</button>
-    <button id="btn-rpw" type="button">balance it for me with rpw</button>
-    <button id="btn-opt" type="button" class="primary">show me the optimum</button>
-    <button id="btn-mine" type="button" hidden>back to my balance</button>
-  </div>
-  <p class="msg" id="msg" role="status" aria-live="polite"></p>
+  <div id="board"></div>
 
-  <div class="board" id="board" aria-label="stations"></div>
-  <div class="tray" id="tray" aria-label="unassigned tasks"><span class="label">unassigned tasks: drop them on a station</span></div>
-  <p class="legend">block height is task time. the dashed line is the takt (cycle time); a station over it turns red.</p>
-
-  <div class="tiles" aria-live="polite">
-    <div class="tile"><div class="k">stations used</div><div class="v" id="m-st">–</div><div class="s" id="m-st-s"></div></div>
-    <div class="tile"><div class="k">line efficiency</div><div class="v" id="m-eff">–</div><div class="s">total work / (stations × takt)</div></div>
-    <div class="tile"><div class="k">smoothness index</div><div class="v" id="m-si">–</div><div class="s">0 means every station equally loaded</div></div>
-    <div class="tile"><div class="k">theoretical rate</div><div class="v" id="m-uph">–</div><div class="s">units per hour at this takt</div></div>
-  </div>
-
-  <div class="compare" id="compare" aria-live="polite">
-    <p class="big" id="cmp-big"></p>
-    <p id="cmp-detail"></p>
-    <p class="small" id="cmp-note"></p>
-  </div>
+  <p class="how"><strong>how this works.</strong> drag tasks between stations, or tab to a task and move it with the arrow keys.
+    a task cannot sit upstream of anything it depends on; a rejected move says which task is in the way. keep every station
+    under the takt and use as few stations as you can, then see how close you got to the proven optimum.</p>
 
   <h2>now run it</h2>
   <p class="lede">a balance is balanced on paper. real station times vary. this simulates your balance with lognormal station
     times at the variability you pick, a buffer of the size you pick between neighbouring stations, and stations that block
     when the next buffer is full and starve when the previous one is empty. 3000 units after a 300 unit warm-up, in your browser.</p>
-  <div class="controls">
-    <div class="ctl"><label for="cv">variability (cv)</label><input id="cv" type="range" min="0" max="1" step="0.05" value="0.3"><output for="cv" id="cv-out" class="num">0.30</output></div>
-    <div class="ctl"><label for="buf">buffer between stations</label><input id="buf" type="range" min="0" max="8" step="1" value="0"><output for="buf" id="buf-out" class="num">0</output></div>
-  </div>
-  <div class="bars">
-    <div class="bar"><span class="lbl">paper rate</span><span class="track"><span class="fill ref" id="b-paper" style="width:100%"></span></span><span class="val" id="v-paper">–</span></div>
-    <div class="bar"><span class="lbl">simulated</span><span class="track"><span class="fill" id="b-sim" style="width:0%"></span></span><span class="val" id="v-sim">–</span></div>
-  </div>
-  <p class="small" id="sim-note"></p>
+  <div id="sim"></div>
 
   <p class="foot">part of <a href="https://github.com/noorps/ladder">noorps/ladder</a>: solvers benchmarked against published optima, a simpy
     simulator (this browser one is checked against it, same random streams, identical throughput to floating point precision on a
@@ -64,6 +35,11 @@
 </main>
 <script src="data/data.js"></script>
 <script src="sim.js"></script>
-<script src="app.js"></script>
+<script src="board.js"></script>
+<script>
+  const ladder = window.LadderBoard.create(window.LADDER_DATA);
+  ladder.mountBoard(document.getElementById("board"));
+  ladder.mountSim(document.getElementById("sim"));
+</script>
 </body>
 </html>
