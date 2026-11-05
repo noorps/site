@@ -1,0 +1,216 @@
+{
+ "name": "sawyer",
+ "source": "scholl (1993) precedence graph SAWYER30, assembly-line-balancing.de",
+ "n": 30,
+ "total_time": 324,
+ "tasks": [
+  {
+   "id": 1,
+   "time": 8,
+   "preds": []
+  },
+  {
+   "id": 2,
+   "time": 7,
+   "preds": []
+  },
+  {
+   "id": 3,
+   "time": 19,
+   "preds": []
+  },
+  {
+   "id": 4,
+   "time": 10,
+   "preds": [
+    1
+   ]
+  },
+  {
+   "id": 5,
+   "time": 2,
+   "preds": [
+    1
+   ]
+  },
+  {
+   "id": 6,
+   "time": 6,
+   "preds": [
+    5
+   ]
+  },
+  {
+   "id": 7,
+   "time": 14,
+   "preds": [
+    4,
+    6
+   ]
+  },
+  {
+   "id": 8,
+   "time": 10,
+   "preds": [
+    7
+   ]
+  },
+  {
+   "id": 9,
+   "time": 1,
+   "preds": [
+    8
+   ]
+  },
+  {
+   "id": 10,
+   "time": 4,
+   "preds": []
+  },
+  {
+   "id": 11,
+   "time": 14,
+   "preds": [
+    2
+   ]
+  },
+  {
+   "id": 12,
+   "time": 15,
+   "preds": [
+    2
+   ]
+  },
+  {
+   "id": 13,
+   "time": 5,
+   "preds": [
+    12
+   ]
+  },
+  {
+   "id": 14,
+   "time": 12,
+   "preds": [
+    13
+   ]
+  },
+  {
+   "id": 15,
+   "time": 9,
+   "preds": [
+    14
+   ]
+  },
+  {
+   "id": 16,
+   "time": 10,
+   "preds": [
+    3
+   ]
+  },
+  {
+   "id": 17,
+   "time": 2,
+   "preds": [
+    3
+   ]
+  },
+  {
+   "id": 18,
+   "time": 10,
+   "preds": [
+    17
+   ]
+  },
+  {
+   "id": 19,
+   "time": 18,
+   "preds": [
+    18
+   ]
+  },
+  {
+   "id": 20,
+   "time": 16,
+   "preds": [
+    14,
+    16
+   ]
+  },
+  {
+   "id": 21,
+   "time": 21,
+   "preds": [
+    20
+   ]
+  },
+  {
+   "id": 22,
+   "time": 14,
+   "preds": [
+    15,
+    21
+   ]
+  },
+  {
+   "id": 23,
+   "time": 16,
+   "preds": [
+    22
+   ]
+  },
+  {
+   "id": 24,
+   "time": 7,
+   "preds": [
+    10,
+    20
+   ]
+  },
+  {
+   "id": 25,
+   "time": 17,
+   "preds": [
+    24
+   ]
+  },
+  {
+   "id": 26,
+   "time": 9,
+   "preds": [
+    9,
+    25
+   ]
+  },
+  {
+   "id": 27,
+   "time": 25,
+   "preds": [
+    23,
+    26
+   ]
+  },
+  {
+   "id": 28,
+   "time": 7,
+   "preds": [
+    27
+   ]
+  },
+  {
+   "id": 29,
+   "time": 14,
+   "preds": [
+    27
+   ]
+  },
+  {
+   "id": 30,
+   "time": 2,
+   "preds": [
+    29
+   ]
+  }
+ ]
+}
