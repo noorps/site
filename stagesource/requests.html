@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My requests · StageSource</title>
+  <meta name="description" content="Track your StageSource rental requests.">
+  <meta name="theme-color" content="#f1ebe0">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/ultra-normal-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css?v=6">
+  <link rel="stylesheet" href="css/style.css?v=6">
+  <script type="module" src="js/requests-page.js?v=6"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="strip"><div class="wrap strip-in"><span>StageSource</span><span>Austin pilot</span><span class="hide-sm">Season 2026/27</span><span class="hide-sm">Est. in a storage room</span></div></div>
+  <header class="nav">
+    <div class="wrap nav-in">
+      <a class="wordmark" href="./" aria-label="StageSource home"><span class="wm-stage">Stage</span><span class="wm-source">Source</span></a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="./#try">Try it</a>
+        <a href="./#inventory">Inventory</a>
+        <a href="requests.html" aria-current="page">My requests</a>
+        <a href="desk.html">Provider desk</a>
+      </nav>
+      <a class="tape" href="./#inventory">Find more props</a>
+    </div>
+  </header>
+
+  <main id="main" class="section page">
+    <div class="wrap">
+      <header class="cue-head">
+        <span class="cue">Your call sheet</span>
+        <h2>My <em>requests.</em></h2>
+        <p class="cue-sub">Every rental you've asked for, one slip per provider. Statuses update as providers respond.</p>
+      </header>
+      <p class="slip-demo" id="demo-note" hidden>Demo mode: requests live in this browser. Open the <a href="desk.html">provider desk</a> to approve them as the theater would.</p>
+      <div class="rq-list" id="rq-list" aria-live="polite"><p class="loading-hand">pulling your slips…</p></div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p class="foot-mark" aria-hidden="true"><span class="wm-stage">Stage</span><span class="wm-source">Source</span></p>
+      <div class="foot-row">
+        <p class="foot-serif">Made in Austin. <em>Keep the ghost light on.</em></p>
+        <p class="foot-links"><a href="./">Home</a><a href="desk.html">Provider desk</a><a href="mailto:purnoor.sharma@utexas.edu?subject=StageSource">Get in touch</a></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

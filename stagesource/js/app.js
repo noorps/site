@@ -1,11 +1,12 @@
-import { LISTINGS, PROVIDERS, CATEGORY_LABELS } from "./inventory.js?v=5";
-import { buildChecklist, matchListings } from "./checklist.js?v=5";
-import { SAMPLE_SCRIPT } from "./sample.js?v=5";
+import { LISTINGS, PROVIDERS, CATEGORY_LABELS } from "./inventory.js?v=6";
+import { buildChecklist, matchListings } from "./checklist.js?v=6";
+import { SAMPLE_SCRIPT } from "./sample.js?v=6";
+import { loadListings, listingById, busyListingIds, myRequests } from "./store.js?v=6";
+import { openSlip } from "./slip.js?v=6";
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 const money = (n) => `$${Math.round(n).toLocaleString()}`;
-const byId = Object.fromEntries(LISTINGS.map((l) => [l.id, l]));
 
 const rateText = (l) => (l.rate === 0 ? "Free to borrow" : `${money(l.rate)}/week`);
 
@@ -16,7 +17,7 @@ function updateTray() {
   const n = requested.size;
   tray.hidden = n === 0;
   if (!n) return;
-  const items = [...requested].map((id) => byId[id]);
+  const items = [...requested].map(listingById).filter(Boolean);
   const rent = items.reduce((s, l) => s + l.rate, 0);
   const buy = items.reduce((s, l) => s + l.replace, 0);
   $("#tray-count").textContent = `${n} item${n === 1 ? "" : "s"}`;
@@ -28,7 +29,7 @@ function toggleRequest(id, btn) {
   document.querySelectorAll(`[data-req="${id}"]`).forEach((b) => {
     const on = requested.has(id);
     b.setAttribute("aria-pressed", String(on));
-    b.textContent = on ? "Requested" : "Request";
+    b.textContent = on ? "Added ✓" : "Request";
   });
   updateTray();
   btn?.blur?.();
@@ -37,7 +38,31 @@ document.addEventListener("click", (e) => {
   const btn = e.target.closest("[data-req]");
   if (btn) toggleRequest(btn.dataset.req, btn);
 });
-const reqButton = (id) => `<button type="button" class="req" data-req="${id}" aria-pressed="${requested.has(id)}">${requested.has(id) ? "Requested" : "Request"}</button>`;
+const reqButton = (id) => `<button type="button" class="req" data-req="${id}" aria-pressed="${requested.has(id)}">${requested.has(id) ? "Added ✓" : "Request"}</button>`;
+function syncButtons() {
+  document.querySelectorAll("[data-req]").forEach((b) => {
+    const on = requested.has(b.dataset.req);
+    b.setAttribute("aria-pressed", String(on));
+    b.textContent = on ? "Added ✓" : "Request";
+  });
+}
+$("#tray-send").addEventListener("click", () =>
+  openSlip(requested, () => {
+    syncButtons();
+    updateTray();
+    refreshBusy();
+    refreshNavCount();
+  }),
+);
+
+/* ---------- My requests count in the nav ---------- */
+async function refreshNavCount() {
+  const open = (await myRequests().catch(() => [])).filter((r) => ["pending", "approved", "picked_up"].includes(r.status)).length;
+  const badge = $("#nav-req-count");
+  badge.textContent = open;
+  badge.hidden = open === 0;
+}
+refreshNavCount();
 
 /* ---------- Script demo ---------- */
 const scriptEl = $("#script");
@@ -154,6 +179,11 @@ const grid = $("#inv-grid");
 const chips = $("#inv-chips");
 const search = $("#inv-search");
 let activeCat = "all";
+let busy = new Set();
+async function refreshBusy() {
+  busy = await busyListingIds();
+  renderGrid();
+}
 let showAll = false;
 const PREVIEW = matchMedia("(max-width: 600px)").matches ? 6 : 12;
 const moreBtn = $("#inv-more");
@@ -182,7 +212,7 @@ function renderGrid() {
     .map((l) => {
       const p = PROVIDERS[l.p];
       return `<article class="tag">
-        <div class="tag-lot"><span>Lot <b>${l.id.toUpperCase()}</b></span><span>${esc(l.era === "Any" ? CATEGORY_LABELS[l.cat] : l.era)}</span></div>
+        <div class="tag-lot"><span>Lot <b>${l.id.toUpperCase()}</b></span><span>${busy.has(l.id) ? '<span class="tag-busy">on hold</span>' : esc(l.era === "Any" ? CATEGORY_LABELS[l.cat] : l.era)}</span></div>
         <h3 class="tag-title">${esc(l.title)}</h3>
         <p class="tag-meta">${esc(p.name)}<br>${esc(p.hood)} · ${p.miles} mi</p>
         <p class="tag-meta">${esc(l.cond)}</p>
@@ -191,10 +221,11 @@ function renderGrid() {
     })
     .join("");
   $("#inv-note").textContent = list.length
-    ? `${list.length} of ${LISTINGS.length} sample listings from ${Object.keys(PROVIDERS).length} providers. Real pilot inventory replaces these as partners join.`
+    ? `${list.length} of ${LISTINGS.length} listings from ${Object.keys(PROVIDERS).length} providers. Sample inventory until pilot partners join.`
     : "Nothing matches that yet. Try a broader word, or tell us what you're looking for in the pilot form.";
 }
 renderGrid();
+loadListings().then(refreshBusy);
 
 /* ---------- Pilot form ---------- */
 const form = $("#pilot-form");
@@ -213,9 +244,6 @@ form.addEventListener("submit", async (e) => {
     msg.className = "form-msg bad";
     msg.textContent = "Add your name and a valid email.";
     return;
-  }
-  if (requested.size) {
-    data.note = `${data.note || ""}\n\nRequested in demo: ${[...requested].map((id) => byId[id].title).join("; ")}`.trim();
   }
   const btn = form.querySelector("button[type=submit]");
   btn.disabled = true;
