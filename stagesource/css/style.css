@@ -393,3 +393,62 @@ h2 em { text-transform: none; font-size: 1.05em; letter-spacing: -.01em; display
 /* Pinyon Script ships in one hairline weight; thicken the big script words so they read. */
 .pb-every, .wm-stage { -webkit-text-stroke: .03em currentColor; paint-order: stroke fill; }
 .foot-mark .wm-stage { -webkit-text-stroke-width: .026em; }
+
+/* ================= box office (payments) ================= */
+.bo-wrap { max-width: 760px; }
+.ticket.bo { background: var(--sheet); box-shadow: inset 0 0 0 2px var(--ink); grid-template-columns: minmax(0, 1fr) 70px; }
+.bo .t-main { padding: 32px clamp(22px, 4vw, 44px) 34px; }
+.bo-title { font: 400 clamp(1.8rem, 4vw, 2.6rem)/1.02 var(--wood); text-transform: uppercase; margin: 4px 0 8px; }
+.bo-meta { font: 400 .82rem/1.6 var(--type); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 20px; }
+.bo-lines { list-style: none; padding: 0; margin: 0 0 6px; border-top: 3px solid var(--ink); }
+.bo-lines li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 10px 0; border-bottom: 1px dashed var(--rule); }
+.bo-lines small { display: block; font: 400 .72rem var(--type); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-top: 2px; }
+.bo-lines b { font: 400 1.15rem var(--deco); white-space: nowrap; font-weight: 400; }
+.bo-sum { margin: 10px 0 18px; }
+.bo-sum div { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 5px 0; }
+.bo-sum dt { font: 800 .98rem/1.3 var(--sans); font-stretch: 75%; text-transform: uppercase; letter-spacing: .05em; }
+.bo-sum dt small { display: block; font: 400 .7rem var(--type); text-transform: none; letter-spacing: .02em; color: var(--muted); }
+.bo-sum dd { margin: 0; font: 400 1.15rem var(--deco); white-space: nowrap; }
+.bo-sum .bo-total { border-top: 3px double var(--ink); margin-top: 8px; padding-top: 12px; }
+.bo-sum .bo-total dt { font: 400 1.5rem var(--wood); letter-spacing: 0; }
+.bo-sum .bo-total dd { font-size: 2.4rem; color: var(--hot-ink); }
+.bo-protect { margin: 4px 0 16px; align-items: flex-start; }
+.bo-protect input { flex: none; margin-top: 2px; }
+.box input[type="checkbox"]:checked::after { content: "✗"; font: 400 1.9rem/1 var(--hand); color: var(--blue); transform: translateY(-1px); }
+.bo-note { font-size: .92rem; color: var(--ink-2); margin: 10px 0 16px; }
+.bo-stamp { color: #2f6b4a; border-color: #2f6b4a; font-size: 1.6rem; padding: 10px 18px; margin: 8px 0 0; }
+.bo .cta-row { margin-top: 18px; }
+.rq-pay { font: 800 .9rem/1.3 var(--sans); font-stretch: 75%; text-transform: uppercase; letter-spacing: .05em; color: var(--hot-ink); margin: 8px 0 2px; }
+.rq-pay.paid { color: #2f6b4a; }
+.rq-pay a { color: var(--blue); }
+.rq-actions a.btn { text-decoration: none; }
+
+/* ================= reviews ================= */
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.rv-form { margin: 10px 0 6px; padding-top: 12px; border-top: 1px dashed var(--rule); display: grid; gap: 6px; }
+.rv-q { font: 400 1.25rem var(--wood); text-transform: uppercase; }
+.rv-stars { display: flex; gap: 2px; }
+.rv-stars label { cursor: pointer; }
+.rv-stars input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.rv-stars span { font-size: 1.9rem; line-height: 1; color: var(--rule); transition: color .1s; }
+/* light the checked star and every star before it */
+.rv-stars label:has(input:checked) span, .rv-stars label:has(~ label input:checked) span { color: var(--hot); }
+.rv-stars input:focus-visible + span { outline: 2px solid var(--blue); outline-offset: 2px; }
+.rv-form .btn { justify-self: start; margin-top: 6px; }
+.rv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+.rv-card { position: relative; margin: 0; background: var(--sheet); padding: 30px 26px 24px; box-shadow: 0 1px 0 var(--rule), 0 14px 32px -18px rgba(40, 30, 15, .45); display: flex; flex-direction: column; gap: 14px; }
+.rv-card:nth-child(odd) { transform: rotate(-.6deg); }
+.rv-card:nth-child(even) { transform: rotate(.5deg); }
+.rv-card::before { content: ""; position: absolute; top: -12px; left: 28px; width: 86px; height: 22px; background: rgba(255, 75, 31, .8); transform: rotate(-4deg); clip-path: polygon(3% 0, 97% 4%, 100% 50%, 96% 100%, 2% 96%, 0 50%); }
+.rv-card blockquote { margin: 0; font: italic 500 1.3rem/1.35 var(--serif); }
+.rv-featured { background: var(--ink); color: var(--paper); }
+.rv-featured blockquote { font-size: 1.55rem; }
+.rv-featured .rv-role { color: rgba(241, 235, 224, .7); }
+.rv-rating { font-size: 1.15rem; color: var(--hot); letter-spacing: .1em; }
+.rv-off { color: var(--rule); }
+.rv-card figcaption { margin-top: auto; display: flex; flex-direction: column; gap: 4px; }
+.rv-name { font: 400 1.5rem/1 var(--wood); text-transform: uppercase; }
+.rv-role { font: 400 .74rem var(--type); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.ticket .bo-lines li { padding-left: 0; }
+.ticket .bo-lines li::before { content: none; }
+.bo-stamp { align-self: flex-start; }

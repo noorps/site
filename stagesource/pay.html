@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Box office · StageSource</title>
+  <meta name="description" content="Pay for and confirm a StageSource rental.">
+  <meta name="theme-color" content="#f1ebe0">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/ultra-normal-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css?v=9">
+  <link rel="stylesheet" href="css/style.css?v=9">
+  <script type="module" src="js/pay.js?v=9"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="strip"><div class="wrap strip-in"><span>StageSource</span><span>Box office</span><span class="hide-sm">Season 2026/27</span><span class="hide-sm">Est. in a storage room</span></div></div>
+  <header class="nav">
+    <div class="wrap nav-in">
+      <a class="wordmark" href="./" aria-label="StageSource home"><span class="wm-stage">Stage</span><span class="wm-source">Source</span></a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="./#inventory">Inventory</a>
+        <a href="requests.html">My requests</a>
+        <a href="desk.html">Provider desk</a>
+      </nav>
+      <a class="tape" href="requests.html">Back to requests</a>
+    </div>
+  </header>
+
+  <main id="main" class="section page">
+    <div class="wrap">
+      <header class="cue-head">
+        <span class="cue">Box office</span>
+        <h2>Pay &amp; <em>confirm.</em></h2>
+        <p class="cue-sub">Your provider approved the request. Pay here to lock it in. The provider is paid when the rental starts.</p>
+      </header>
+      <div id="pay-root" aria-live="polite"><p class="loading-hand">finding your ticket…</p></div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p class="foot-mark" aria-hidden="true"><span class="wm-stage">Stage</span><span class="wm-source">Source</span></p>
+      <div class="foot-row">
+        <p class="foot-serif">Made in Austin. <em>Keep the ghost light on.</em></p>
+        <p class="foot-links"><a href="./">Home</a><a href="requests.html">My requests</a><a href="mailto:purnoor.sharma@utexas.edu?subject=StageSource">Get in touch</a></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

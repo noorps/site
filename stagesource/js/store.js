@@ -1,7 +1,8 @@
 // Data layer for requests and listings.
 // Talks to the Pages Functions API when it is deployed; otherwise runs in demo
 // mode and keeps everything in this browser's localStorage, with the same shapes.
-import { LISTINGS, PROVIDERS } from "./inventory.js?v=8";
+import { LISTINGS, PROVIDERS } from "./inventory.js?v=9";
+import { quote } from "./pricing.js?v=9";
 
 const KEY = "stagesource:v1";
 let mode = null; // "api" | "local"
@@ -23,9 +24,9 @@ export const RENTER_MOVES = { pending: ["cancelled"], approved: ["cancelled"] };
 function load() {
   try {
     const d = JSON.parse(localStorage.getItem(KEY) || "{}");
-    return { requests: d.requests || [], listings: d.listings || [], mine: d.mine || [], tokens: d.tokens || {}, desk: d.desk || "" };
+    return { requests: d.requests || [], listings: d.listings || [], mine: d.mine || [], tokens: d.tokens || {}, desk: d.desk || "", reviews: d.reviews || [] };
   } catch {
-    return { requests: [], listings: [], mine: [], tokens: {}, desk: "" };
+    return { requests: [], listings: [], mine: [], tokens: {}, desk: "", reviews: [] };
   }
 }
 function save(d) {
@@ -162,6 +163,7 @@ export async function createRequests(ids, form) {
     contactName: form.contactName,
     contactEmail: form.contactEmail,
     note: form.note || "",
+    payment: null,
     history: [{ status: "pending", at: now, by: "production" }],
   }));
   d.requests.push(...created);
@@ -230,3 +232,86 @@ export function rememberDesk(providerId) {
   save(d);
 }
 export const lastDesk = () => load().desk;
+
+/* ---------- payments ---------- */
+const replaceOf = (id) => listingById(id)?.replace || 0;
+export const quoteFor = (req, protection) => quote(req, { protection, replaceOf });
+
+export async function getRequest(id) {
+  if ((await getMode()) === "api") {
+    const r = await fetch(`api/requests?ids=${encodeURIComponent(id)}`, { cache: "no-store" });
+    return (await json(r))[0] || null;
+  }
+  return load().requests.find((r) => r.id === id) || null;
+}
+
+export const canPay = (r) => r && ["approved", "picked_up"].includes(r.status) && r.payment?.status !== "paid";
+
+/** API mode: returns a Stripe Checkout URL to send the browser to. */
+export async function startCheckout(id, protection) {
+  const d = load();
+  const back = new URL("pay.html", location.href).href;
+  const r = await fetch("api/checkout", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ id, token: d.tokens[id], protection, back }),
+  });
+  const j = await json(r);
+  if (!r.ok) throw new Error(j.message || "Could not start checkout.");
+  return j.url;
+}
+
+/** Demo mode: record a simulated payment. Nothing is charged and no card details exist. */
+export async function payDemo(id, protection) {
+  const d = load();
+  const req = d.requests.find((r) => r.id === id);
+  if (!canPay(req)) throw new Error("This request can't be paid right now.");
+  const q = quoteFor(req, protection);
+  const at = new Date().toISOString();
+  req.payment = { status: "paid", method: "demo", amount: q.total, protection, quote: q, at, ref: makeId("PAY") };
+  req.history.push({ status: req.status, at, by: "production", note: `Paid ${(q.total / 100).toFixed(2)} (demo)` });
+  save(d);
+  return req;
+}
+
+/* ---------- reviews ---------- */
+export const firstName = (name) => String(name || "").trim().split(/\s+/)[0] || "Someone";
+
+export async function listReviews() {
+  if ((await getMode()) === "api") {
+    try {
+      return await json(await fetch("api/reviews", { cache: "no-store" }));
+    } catch {
+      return [];
+    }
+  }
+  return load().reviews.slice().sort((a, b) => b.at.localeCompare(a.at));
+}
+
+export async function addReview(requestId, { stars, text }) {
+  stars = Math.max(1, Math.min(5, Math.round(Number(stars) || 0)));
+  text = String(text || "").trim().slice(0, 600);
+  if (!text) throw new Error("Write a sentence or two.");
+  if ((await getMode()) === "api") {
+    const d = load();
+    const r = await fetch("api/reviews", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ id: requestId, token: d.tokens[requestId], stars, text }) });
+    const j = await json(r);
+    if (!r.ok) throw new Error(j.message || "Could not save the review.");
+    d.reviewed = [...(d.reviewed || []), requestId];
+    save(d);
+    return j;
+  }
+  const d = load();
+  const req = d.requests.find((r) => r.id === requestId);
+  if (!req || req.status !== "returned") throw new Error("You can review a rental once it's returned.");
+  if (d.reviews.some((v) => v.requestId === requestId)) throw new Error("You already reviewed this rental.");
+  const review = { id: makeId("RV"), requestId, providerId: req.providerId, name: firstName(req.contactName), production: req.production, stars, text, at: new Date().toISOString() };
+  d.reviews.push(review);
+  save(d);
+  return review;
+}
+
+export async function reviewedIds() {
+  const d = load();
+  return new Set([...(d.reviewed || []), ...d.reviews.map((v) => v.requestId)]);
+}

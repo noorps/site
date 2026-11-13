@@ -1,8 +1,9 @@
-import { LISTINGS, PROVIDERS, CATEGORY_LABELS } from "./inventory.js?v=8";
-import { buildChecklist, matchListings } from "./checklist.js?v=8";
-import { SAMPLE_SCRIPT } from "./sample.js?v=8";
-import { loadListings, listingById, busyListingIds, myRequests } from "./store.js?v=8";
-import { openSlip } from "./slip.js?v=8";
+import { LISTINGS, PROVIDERS, CATEGORY_LABELS } from "./inventory.js?v=9";
+import { buildChecklist, matchListings } from "./checklist.js?v=9";
+import { SAMPLE_SCRIPT } from "./sample.js?v=9";
+import { loadListings, listingById, busyListingIds, myRequests } from "./store.js?v=9";
+import { openSlip } from "./slip.js?v=9";
+import { renderReviews } from "./reviews.js?v=9";
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
@@ -226,6 +227,7 @@ function renderGrid() {
 }
 renderGrid();
 loadListings().then(refreshBusy);
+renderReviews(document.getElementById("reviews"));
 
 /* ---------- Pilot form ---------- */
 const form = $("#pilot-form");
