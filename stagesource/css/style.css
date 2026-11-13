@@ -244,12 +244,12 @@ h2 em { text-transform: none; font-size: 1.05em; letter-spacing: -.01em; display
 .sheet { padding: 30px clamp(20px, 3vw, 36px); display: grid; gap: 4px; }
 .sheet-title { font: 400 1.7rem/1 var(--wood); text-transform: uppercase; border-bottom: 3px double var(--ink); padding-bottom: 12px; margin-bottom: 10px; display: flex; flex-direction: column; gap: 6px; }
 .sheet-title span { font-size: .7rem; font-weight: 400; color: var(--muted); }
-.line { display: block; font: 400 .74rem var(--type); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); padding-top: 10px; }
-.line input, .line textarea { display: block; width: 100%; border: 0; border-bottom: 1.5px solid var(--ink); background: transparent; padding: 2px 2px 4px; font: 400 2rem/1.1 var(--hand); color: var(--blue); text-transform: none; letter-spacing: 0; resize: vertical; }
+.line { display: block; font: 800 1.05rem/1.2 var(--sans); font-stretch: 75%; text-transform: uppercase; letter-spacing: .06em; color: var(--ink); padding-top: 14px; }
+.line input, .line textarea { display: block; width: 100%; border: 0; border-bottom: 1.5px solid var(--ink); background: transparent; margin-top: 2px; padding: 2px 2px 3px; font: 400 1.45rem/1.15 var(--hand); color: var(--blue); text-transform: none; letter-spacing: 0; resize: vertical; }
 .line input:focus, .line textarea:focus { outline: none; border-color: var(--hot); background: rgba(243, 255, 107, .18); }
-.opt { text-transform: none; }
+.opt { font: 400 .74rem var(--type); text-transform: none; letter-spacing: .02em; color: var(--muted); }
 .line-set { border: 0; margin: 14px 0 6px; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 22px; }
-.line-set legend { font: 400 .74rem var(--type); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 8px; }
+.line-set legend { font: 800 1.05rem/1.2 var(--sans); font-stretch: 75%; text-transform: uppercase; letter-spacing: .06em; color: var(--ink); margin-bottom: 10px; }
 .box { display: flex; align-items: center; gap: 9px; cursor: pointer; font-size: .98rem; }
 .box input { appearance: none; width: 20px; height: 20px; border: 1.5px solid var(--ink); margin: 0; display: grid; place-items: center; cursor: pointer; }
 .box input:checked::after { content: "✗"; font: 400 1.9rem/1 var(--hand); color: var(--blue); transform: translateY(-1px); }
@@ -329,7 +329,7 @@ h2 em { text-transform: none; font-size: 1.05em; letter-spacing: -.01em; display
 .slip-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 22px; margin-top: 10px; }
 .slip-fields .span2, .list-form .span2 { grid-column: 1 / -1; }
 @media (max-width: 560px) { .slip-fields { grid-template-columns: 1fr; } }
-.line input[type="date"], .line select { font: 400 1.05rem/1.2 var(--type); color: var(--ink); padding: 6px 2px; border: 0; border-bottom: 1.5px solid var(--ink); background: transparent; width: 100%; display: block; text-transform: none; letter-spacing: 0; }
+.line input[type="date"], .line select { margin-top: 4px; font: 400 .95rem/1.2 var(--type); color: var(--ink); padding: 6px 2px; border: 0; border-bottom: 1.5px solid var(--ink); background: transparent; width: 100%; display: block; text-transform: none; letter-spacing: 0; }
 .slip-summary { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-top: 20px; padding: 14px 0 0; border-top: 3px solid var(--ink); font: 400 .78rem var(--type); text-transform: uppercase; letter-spacing: .08em; }
 .slip-summary b { font: 400 2rem/1 var(--deco); letter-spacing: 0; }
 .slip-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin-top: 20px; }

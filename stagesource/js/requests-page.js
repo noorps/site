@@ -1,5 +1,5 @@
-import { myRequests, updateStatus, getMode, RENTER_MOVES, loadListings } from "./store.js?v=6";
-import { slipCard } from "./cards.js?v=6";
+import { myRequests, updateStatus, getMode, RENTER_MOVES, loadListings } from "./store.js?v=7";
+import { slipCard } from "./cards.js?v=7";
 
 const list = document.getElementById("rq-list");
 
