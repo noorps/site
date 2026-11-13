@@ -1,15 +1,15 @@
 // "From the wings": reviews section on the home page.
 // Featured quotes are real words from real people, added with their OK.
 // A card only shows once its quote is filled in.
-import { PROVIDERS } from "./inventory.js?v=9";
-import { listReviews } from "./store.js?v=9";
-import { esc } from "./cards.js?v=9";
+import { PROVIDERS } from "./inventory.js?v=10";
+import { listReviews } from "./store.js?v=10";
+import { esc } from "./cards.js?v=10";
 
 export const FEATURED = [
   {
     name: "Alicia",
     role: "My middle school theatre teacher",
-    quote: "", // waiting on Alicia's own words
+    quote: "This is going to keep the arts alive at the cost of so much less.",
   },
 ];
 

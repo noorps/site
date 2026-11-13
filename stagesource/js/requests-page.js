@@ -1,5 +1,5 @@
-import { myRequests, updateStatus, getMode, RENTER_MOVES, loadListings, addReview, reviewedIds } from "./store.js?v=9";
-import { slipCard, esc } from "./cards.js?v=9";
+import { myRequests, updateStatus, getMode, RENTER_MOVES, loadListings, addReview, reviewedIds } from "./store.js?v=10";
+import { slipCard, esc } from "./cards.js?v=10";
 
 const list = document.getElementById("rq-list");
 

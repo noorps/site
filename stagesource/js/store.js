@@ -1,8 +1,8 @@
 // Data layer for requests and listings.
 // Talks to the Pages Functions API when it is deployed; otherwise runs in demo
 // mode and keeps everything in this browser's localStorage, with the same shapes.
-import { LISTINGS, PROVIDERS } from "./inventory.js?v=9";
-import { quote } from "./pricing.js?v=9";
+import { LISTINGS, PROVIDERS } from "./inventory.js?v=10";
+import { quote } from "./pricing.js?v=10";
 
 const KEY = "stagesource:v1";
 let mode = null; // "api" | "local"
