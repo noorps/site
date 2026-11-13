@@ -1,6 +1,6 @@
-import { LISTINGS, PROVIDERS, CATEGORY_LABELS } from "./inventory.js?v=4";
-import { buildChecklist, matchListings } from "./checklist.js?v=4";
-import { SAMPLE_SCRIPT } from "./sample.js?v=4";
+import { LISTINGS, PROVIDERS, CATEGORY_LABELS } from "./inventory.js?v=5";
+import { buildChecklist, matchListings } from "./checklist.js?v=5";
+import { SAMPLE_SCRIPT } from "./sample.js?v=5";
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
@@ -155,7 +155,7 @@ const chips = $("#inv-chips");
 const search = $("#inv-search");
 let activeCat = "all";
 let showAll = false;
-const PREVIEW = 12;
+const PREVIEW = matchMedia("(max-width: 600px)").matches ? 6 : 12;
 const moreBtn = $("#inv-more");
 moreBtn.addEventListener("click", () => { showAll = true; renderGrid(); });
 
