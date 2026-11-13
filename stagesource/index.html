@@ -13,9 +13,9 @@
   <link rel="preload" href="fonts/ultra-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/pinyon-script-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/bodoni-moda-italic-400-900.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/fonts.css?v=5">
-  <link rel="stylesheet" href="css/style.css?v=5">
-  <script type="module" src="js/app.js?v=5"></script>
+  <link rel="stylesheet" href="css/fonts.css?v=6">
+  <link rel="stylesheet" href="css/style.css?v=6">
+  <script type="module" src="js/app.js?v=6"></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -34,6 +34,7 @@
         <a href="#try">Try it</a>
         <a href="#inventory">Inventory</a>
         <a href="#pricing">Pricing</a>
+        <a href="requests.html">My requests<span class="nav-count" id="nav-req-count" hidden>0</span></a>
       </nav>
       <a class="tape" href="#pilot">Join the pilot</a>
     </div>
@@ -226,7 +227,7 @@
                 <li>Approve every request yourself</li>
                 <li>Reach productions that never knew you existed</li>
               </ul>
-              <a class="btn btn-ghost" href="#pilot" data-role="provider">List your inventory <span aria-hidden="true">→</span></a>
+              <a class="btn btn-ghost" href="desk.html">Open the provider desk <span aria-hidden="true">→</span></a>
             </div>
             <div class="t-stub" aria-hidden="true"><span>No. 0002</span><span>Provider pass</span></div>
           </article>
@@ -275,7 +276,7 @@
       <p class="foot-mark" aria-hidden="true"><span class="wm-stage">Stage</span><span class="wm-source">Source</span></p>
       <div class="foot-row">
         <p class="foot-serif">Made in Austin. <em>Keep the ghost light on.</em></p>
-        <p><a href="mailto:purnoor.sharma@utexas.edu?subject=StageSource">Get in touch</a></p>
+        <p class="foot-links"><a href="requests.html">My requests</a><a href="desk.html">Provider desk</a><a href="mailto:purnoor.sharma@utexas.edu?subject=StageSource">Get in touch</a></p>
       </div>
     </div>
   </footer>
@@ -283,7 +284,7 @@
   <div class="tray" id="tray" hidden>
     <div class="tray-in">
       <div><strong id="tray-count">0 items</strong> on hold <span class="tray-sum" id="tray-sum"></span></div>
-      <a class="tray-btn" href="#pilot">Send requests →</a>
+      <button type="button" class="tray-btn" id="tray-send">Review &amp; send →</button>
     </div>
   </div>
 </body>

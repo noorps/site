@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Provider desk · StageSource</title>
+  <meta name="description" content="Approve rental requests and list inventory on StageSource.">
+  <meta name="theme-color" content="#f1ebe0">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/ultra-normal-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css?v=6">
+  <link rel="stylesheet" href="css/style.css?v=6">
+  <script type="module" src="js/desk.js?v=6"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="strip"><div class="wrap strip-in"><span>StageSource</span><span>Provider desk</span><span class="hide-sm">Season 2026/27</span><span class="hide-sm">Est. in a storage room</span></div></div>
+  <header class="nav">
+    <div class="wrap nav-in">
+      <a class="wordmark" href="./" aria-label="StageSource home"><span class="wm-stage">Stage</span><span class="wm-source">Source</span></a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="./#inventory">Inventory</a>
+        <a href="requests.html">My requests</a>
+        <a href="desk.html" aria-current="page">Provider desk</a>
+      </nav>
+      <a class="tape" href="#list">List an item</a>
+    </div>
+  </header>
+
+  <main id="main" class="section page">
+    <div class="wrap">
+      <header class="cue-head">
+        <span class="cue">Backstage</span>
+        <h2>Provider <em>desk.</em></h2>
+        <p class="cue-sub">Approve requests, track what's out, and put more of your storage room on the shelf.</p>
+      </header>
+
+      <div class="desk-bar">
+        <label class="line">Signed in as
+          <select id="desk-provider"></select>
+        </label>
+        <label class="line" id="key-wrap" hidden>Access key<input id="desk-key" type="password" autocomplete="off"></label>
+        <div class="desk-stats" id="desk-stats"></div>
+      </div>
+      <p class="slip-demo" id="demo-note" hidden>Demo mode: pick any provider above to play the theater's side. Real providers sign in with their own key.</p>
+
+      <div class="filters">
+        <div class="tabs" role="tablist" aria-label="Desk sections">
+          <button type="button" class="tab" role="tab" data-pane="incoming" aria-pressed="true">Requests <span class="tab-count" id="count-incoming"></span></button>
+          <button type="button" class="tab" role="tab" data-pane="listings" aria-pressed="false">Your shelf <span class="tab-count" id="count-listings"></span></button>
+          <button type="button" class="tab" role="tab" data-pane="list" aria-pressed="false" id="list">List an item</button>
+        </div>
+      </div>
+
+      <section class="pane" id="pane-incoming" aria-live="polite"></section>
+      <section class="pane" id="pane-listings" hidden></section>
+      <section class="pane" id="pane-list" hidden>
+        <form class="paper sheet list-form" id="list-form" novalidate>
+          <p class="sheet-title">New listing <span>Goes on the shelf as soon as you save it</span></p>
+          <label class="line span2">What is it?<input name="title" required placeholder="Velvet chaise lounge, burgundy"></label>
+          <label class="line">Category
+            <select name="cat" id="list-cat"></select>
+          </label>
+          <label class="line">Era<input name="era" placeholder="1940s, Victorian, Any"></label>
+          <label class="line">Weekly rate ($, 0 = free to borrow)<input name="rate" type="number" min="0" step="1" value="10"></label>
+          <label class="line">Cost to buy new ($)<input name="replace" type="number" min="0" step="1" placeholder="120"></label>
+          <label class="line span2">Condition &amp; notes<input name="cond" placeholder="Reupholstered, seats two, needs two to lift"></label>
+          <label class="line span2">Search words <span class="opt">(comma separated)</span><input name="tags" placeholder="chaise, couch, fainting couch"></label>
+          <button class="btn" type="submit">Put it on the shelf <span aria-hidden="true">→</span></button>
+          <p class="form-msg" id="list-msg" role="status"></p>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p class="foot-mark" aria-hidden="true"><span class="wm-stage">Stage</span><span class="wm-source">Source</span></p>
+      <div class="foot-row">
+        <p class="foot-serif">Made in Austin. <em>Keep the ghost light on.</em></p>
+        <p class="foot-links"><a href="./">Home</a><a href="requests.html">My requests</a><a href="mailto:purnoor.sharma@utexas.edu?subject=StageSource">Get in touch</a></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
