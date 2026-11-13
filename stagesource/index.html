@@ -3,204 +3,264 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>StageSource: borrow the props, sets and costumes Austin already owns</title>
+  <title>StageSource: every prop deserves a second act</title>
   <meta name="description" content="StageSource is a local rental marketplace for community theaters and small film crews. Upload your script, get a sourcing checklist, and rent or borrow from nearby companies.">
   <meta property="og:title" content="StageSource">
   <meta property="og:description" content="Upload your script. Get a sourcing checklist. Borrow what nearby theaters already own.">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#17130f">
+  <meta name="theme-color" content="#f1ebe0">
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Caveat:wght@500;700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <script type="module" src="js/app.js"></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
+  <div class="strip">
+    <div class="wrap strip-in">
+      <span>StageSource</span><span>Austin pilot</span><span class="hide-sm">Season 2026/27</span><span class="hide-sm">Est. in a storage room</span>
+    </div>
+  </div>
+
   <header class="nav">
     <div class="wrap nav-in">
-      <a class="brand" href="#top" aria-label="StageSource home">
-        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3v4" /><circle cx="16" cy="13" r="6" /><path d="M13 19h6l-1 8h-4z" /><path d="M10 29h12" /></svg>
-        <span>StageSource</span>
-      </a>
+      <a class="wordmark" href="#top" aria-label="StageSource home">Stage<span>Source</span></a>
       <nav class="nav-links" aria-label="Main">
-        <a href="#how">How it works</a>
+        <a href="#how">How</a>
         <a href="#try">Try it</a>
         <a href="#inventory">Inventory</a>
         <a href="#pricing">Pricing</a>
       </nav>
-      <a class="btn btn-small" href="#pilot">Join the pilot</a>
+      <a class="tape" href="#pilot">Join the pilot</a>
     </div>
   </header>
 
   <main id="main">
+    <!-- HERO -->
     <section class="hero" id="top">
-      <div class="wrap hero-in">
-        <p class="eyebrow">Now piloting in Austin, TX</p>
-        <h1>The set you need is already built. <em>It's just across town.</em></h1>
-        <p class="lede">StageSource is a rental marketplace for community theaters and small film crews. Upload your script, get a sourcing checklist in seconds, and borrow or rent what nearby companies already have in storage.</p>
-        <div class="hero-cta">
-          <a class="btn" href="#try">Turn a script into a checklist</a>
-          <a class="btn btn-ghost" href="#inventory">Browse nearby inventory</a>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="label">A rental marketplace for theater &amp; film · Austin, TX</p>
+          <h1>
+            <span class="h-marquee">Every prop</span>
+            <span class="h-serif">deserves a</span>
+            <span class="h-marquee h-hot">second act.</span>
+          </h1>
+          <p class="lede">Small theater companies spend weeks and real money hunting for things that already sit in a storage room across town. StageSource reads your script, builds the sourcing list, and finds who nearby can lend it.</p>
+          <div class="cta-row">
+            <a class="btn" href="#try">Turn a script into a checklist <span aria-hidden="true">→</span></a>
+            <a class="text-link" href="#inventory">or browse what's nearby</a>
+          </div>
         </div>
-        <ul class="hero-for" aria-label="Who it's for">
-          <li>Community theaters</li><li>School drama programs</li><li>Indie film crews</li><li>Events</li>
-        </ul>
+
+        <figure class="script-page" aria-label="Example: a script page annotated with where each item can be borrowed">
+          <span class="tape-piece" aria-hidden="true"></span>
+          <div class="page-head"><span>THE LAST TRAIN TO LOCKHART</span><span>p. 1</span></div>
+          <div class="page-body">
+            <p class="sl">SCENE 1. A BOARDING HOUSE PARLOR. NIGHT.</p>
+            <div class="ln"><p>(Rain against the window. A <mark>brass floor lamp</mark> is the only light.)</p><span class="note">Hyde Park, 2.9 mi · $12/wk</span></div>
+            <div class="ln"><p>MARGARET sits on a <mark>velvet chaise</mark>, in black and <mark>pearls</mark>.</p><span class="note">S. Lamar shop · $45/wk</span></div>
+            <div class="ln"><p>A <mark>rotary phone</mark> sits on the <mark>writing desk</mark>.</p><span class="note">E. Austin · $12/wk + desk $30</span></div>
+            <p class="dlg"><span>MARGARET</span>He said he'd call by nine.</p>
+            <div class="ln"><p>DANIEL enters in a <mark>trench coat</mark> and <mark>fedora</mark>.</p><span class="note">both at the costume library ✓</span></div>
+            <div class="ln"><p>(<mark>Fog</mark> rolls across the platform.)</p><span class="note">Mueller co-op · $35</span></div>
+          </div>
+          <span class="stamp" aria-hidden="true">Sourced<br>8 / 8</span>
+        </figure>
       </div>
-      <div class="ghost-light" aria-hidden="true"></div>
     </section>
 
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Rotary phone ✶ Velvet chaise ✶ 1940s fedoras ✶ Fog machine ✶ Church pews ✶ Steamer trunk ✶ Choir robes ×20 ✶ Practical door ✶ Night-sky drop ✶ Breakaway bottles ✶ Upright piano ✶ </span>
+        <span>Rotary phone ✶ Velvet chaise ✶ 1940s fedoras ✶ Fog machine ✶ Church pews ✶ Steamer trunk ✶ Choir robes ×20 ✶ Practical door ✶ Night-sky drop ✶ Breakaway bottles ✶ Upright piano ✶ </span>
+      </div>
+    </div>
+
+    <!-- CUE 01 -->
     <section class="section" id="how">
       <div class="wrap">
-        <h2>From script to load-in in three steps</h2>
-        <ol class="steps">
+        <header class="cue-head">
+          <span class="cue">Cue 01</span>
+          <h2>Script to load-in, <em>in three cues.</em></h2>
+        </header>
+        <div class="callsheet" role="table" aria-label="How StageSource works">
+          <div class="cs-row cs-headrow" role="row"><span role="columnheader">Cue</span><span role="columnheader">Action</span><span role="columnheader">Who</span><span role="columnheader">Runs</span></div>
+          <div class="cs-row" role="row">
+            <span class="cs-n" role="cell">01</span>
+            <div role="cell"><h3>Upload the script</h3><p>Paste it, drop a text file, or add production notes. Stage directions and dialogue both count.</p></div>
+            <span role="cell">You</span><span role="cell">1 min</span>
+          </div>
+          <div class="cs-row" role="row">
+            <span class="cs-n" role="cell">02</span>
+            <div role="cell"><h3>Get the sourcing checklist</h3><p>Props, furniture, costumes, lighting and effects, with quantities, scenes, and the details that matter: period, color, "must hold liquid."</p></div>
+            <span role="cell">StageSource</span><span role="cell">Seconds</span>
+          </div>
+          <div class="cs-row" role="row">
+            <span class="cs-n" role="cell">03</span>
+            <div role="cell"><h3>Borrow it from down the street</h3><p>Every item is matched to theaters, schools and suppliers nearby. Request it, pick it up, bring it back after strike.</p></div>
+            <span role="cell">Your neighbors</span><span role="cell">Before tech</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUE 02 -->
+    <section class="section section-desk" id="try">
+      <div class="wrap">
+        <header class="cue-head">
+          <span class="cue">Cue 02</span>
+          <h2>Hand us a script. <em>Watch it get sourced.</em></h2>
+          <p class="cue-sub">Paste a scene or use our sample one-act. Items are matched against the Austin pilot's sample inventory.</p>
+        </header>
+
+        <div class="demo">
+          <form class="paper paper-script" id="script-form">
+            <div class="holes" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="paper-bar">
+              <label for="script">Your script</label>
+              <div class="paper-tools">
+                <button type="button" class="hand-link" id="use-sample">use the sample →</button>
+                <label class="hand-link file-label">upload .txt<input type="file" id="script-file" accept=".txt,.md,.fountain,text/plain" hidden></label>
+              </div>
+            </div>
+            <textarea id="script" name="script" rows="18" spellcheck="false" placeholder="SCENE 1. A kitchen, early morning.&#10;&#10;(ROSA sets two coffee cups on the table...)"></textarea>
+            <div class="paper-actions">
+              <span class="count" id="char-count">0 characters</span>
+              <button class="btn" type="submit" id="run">Build my checklist <span aria-hidden="true">→</span></button>
+            </div>
+          </form>
+
+          <div class="paper paper-list" id="output" aria-live="polite">
+            <div class="empty">
+              <p class="empty-title">Props list</p>
+              <p class="empty-hand">your checklist lands here ↓</p>
+              <div class="empty-lines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUE 03 -->
+    <section class="section" id="inventory">
+      <div class="wrap">
+        <header class="cue-head">
+          <span class="cue">Cue 03</span>
+          <h2>What's on the shelves <em>across town.</em></h2>
+          <p class="cue-sub">Sample listings from the kinds of partners we're onboarding: community theaters, school programs, costume collections and equipment co-ops.</p>
+        </header>
+        <div class="filters">
+          <div class="tabs" id="inv-chips" role="group" aria-label="Filter by category"></div>
+          <input type="search" id="inv-search" placeholder="search: chaise, fedora, fog…" aria-label="Search inventory">
+        </div>
+        <div class="tags" id="inv-grid"></div>
+        <button type="button" class="btn btn-ghost more" id="inv-more" hidden>Show all listings</button>
+        <p class="note" id="inv-note"></p>
+      </div>
+    </section>
+
+    <!-- CUE 04 -->
+    <section class="section section-blue" id="why">
+      <div class="wrap">
+        <header class="cue-head">
+          <span class="cue cue-inv">Cue 04</span>
+          <h2>Why <em>we're building it.</em></h2>
+        </header>
+        <ol class="reasons">
           <li>
-            <span class="step-n">1</span>
-            <h3>Upload the script</h3>
-            <p>Paste it, drop a text file, or add your production notes. StageSource reads the stage directions and dialogue for everything the show needs.</p>
+            <span class="r-n">1</span>
+            <p class="r-big">Less ends up <em>in a dumpster.</em></p>
+            <p>Most sets, props and costumes are made for one run, stored, then thrown out. Every rental is one less thing built new and one less thing binned after strike.</p>
           </li>
           <li>
-            <span class="step-n">2</span>
-            <h3>Get your sourcing checklist</h3>
-            <p>Props, furniture, costumes, lighting and effects, with quantities, the scenes they appear in, and the details that matter (period, color, "must hold liquid").</p>
+            <span class="r-n">2</span>
+            <p class="r-big">More of the budget goes <em>to artists.</em></p>
+            <p>Volunteer hours spent driving around for a rotary phone belong in rehearsal. Money spent buying one belongs to the people on stage.</p>
           </li>
           <li>
-            <span class="step-n">3</span>
-            <h3>Borrow it from down the street</h3>
-            <p>Each item is matched against inventory from theaters, schools and suppliers near you. Request it, arrange pickup, return it after strike.</p>
+            <span class="r-n">3</span>
+            <p class="r-big">Storage rooms start <em>paying rent.</em></p>
+            <p>A costume room full of past seasons is income waiting to happen. Providers set their own rates, or lend free to the groups they want to back.</p>
           </li>
         </ol>
       </div>
     </section>
 
-    <section class="section section-dark" id="try">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>Try it on a script</h2>
-          <p>Paste a scene or use our sample one-act. You'll get a checklist matched against the Austin pilot's sample inventory.</p>
-        </div>
-
-        <div class="demo">
-          <form class="demo-input" id="script-form">
-            <div class="demo-bar">
-              <label for="script">Script or production notes</label>
-              <div class="demo-tools">
-                <button type="button" class="link" id="use-sample">Use sample script</button>
-                <label class="link file-label">Upload .txt<input type="file" id="script-file" accept=".txt,.md,.fountain,text/plain" hidden></label>
-              </div>
-            </div>
-            <textarea id="script" name="script" rows="16" spellcheck="false" placeholder="SCENE 1. A kitchen, early morning.&#10;&#10;(ROSA sets two coffee cups on the table...)"></textarea>
-            <div class="demo-actions">
-              <span class="count" id="char-count">0 characters</span>
-              <button class="btn" type="submit" id="run">Build my checklist</button>
-            </div>
-          </form>
-
-          <div class="demo-output" id="output" aria-live="polite">
-            <div class="empty">
-              <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="6" width="28" height="36" rx="3" /><path d="M17 16h14M17 23h14M17 30h9" /></svg>
-              <p>Your checklist will appear here.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="inventory">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>What's on the shelves nearby</h2>
-          <p>Sample listings from the kinds of partners we're onboarding for the Austin pilot: community theaters, school programs, costume collections and equipment co-ops.</p>
-        </div>
-        <div class="filters">
-          <input type="search" id="inv-search" placeholder="Search: chaise, fedora, fog machine..." aria-label="Search inventory">
-          <div class="chips" id="inv-chips" role="group" aria-label="Filter by category"></div>
-        </div>
-        <div class="grid" id="inv-grid"></div>
-        <p class="note" id="inv-note"></p>
-      </div>
-    </section>
-
-    <section class="section section-tint" id="why">
-      <div class="wrap">
-        <h2>Why we're building it</h2>
-        <div class="why">
-          <article>
-            <h3>Less ends up in a dumpster</h3>
-            <p>Most sets, props and costumes are built or bought for one run, then stored, then thrown out. Every rental is one less item made new and one less thrown away after strike.</p>
-          </article>
-          <article>
-            <h3>More of the budget goes to the work</h3>
-            <p>Small companies spend weeks of volunteer time and a real share of their budget hunting down things that already exist a few miles away. That time belongs to rehearsal, and that money belongs to artists.</p>
-          </article>
-          <article>
-            <h3>Storage rooms start paying their way</h3>
-            <p>A costume room or scene shop full of past seasons is income waiting to happen. Providers set their own rates, or lend for free to the groups they want to support.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
+    <!-- CUE 05 -->
     <section class="section" id="pricing">
       <div class="wrap">
-        <div class="section-head">
-          <h2>Simple pricing</h2>
-          <p>Pilot pricing for Austin. Rental rates are set by each provider.</p>
-        </div>
-        <div class="prices">
-          <article class="price">
-            <h3>Production pass</h3>
-            <p class="amount"><span>$99</span> per production</p>
-            <ul>
-              <li>Unlimited script checklists for the show</li>
-              <li>Search and request from every local provider</li>
-              <li>Pickup and return scheduling</li>
-              <li>One shared list for your whole crew</li>
-            </ul>
-            <a class="btn" href="#pilot" data-role="production">Join as a production</a>
+        <header class="cue-head">
+          <span class="cue">Cue 05</span>
+          <h2>One ticket <em>per show.</em></h2>
+          <p class="cue-sub">Pilot pricing for Austin. Rental rates are set by each provider.</p>
+        </header>
+        <div class="tickets">
+          <article class="ticket">
+            <div class="t-main">
+              <p class="t-kicker">Admit one production</p>
+              <h3 class="t-price">$99</h3>
+              <ul>
+                <li>Unlimited script checklists for the show</li>
+                <li>Search and request from every local provider</li>
+                <li>Pickup and return scheduling</li>
+                <li>One shared list for the whole crew</li>
+              </ul>
+              <a class="btn" href="#pilot" data-role="production">Join as a production <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="t-stub" aria-hidden="true"><span>No. 0001</span><span>Production pass</span></div>
           </article>
-          <article class="price price-alt">
-            <h3>Inventory provider</h3>
-            <p class="amount"><span>Free</span> to list</p>
-            <ul>
-              <li>List props, costumes, sets and gear</li>
-              <li>Set your own weekly rate, or lend for free</li>
-              <li>Approve every request before it's confirmed</li>
-              <li>Reach productions that would never have found you</li>
-            </ul>
-            <a class="btn btn-ghost" href="#pilot" data-role="provider">List your inventory</a>
+          <article class="ticket ticket-alt">
+            <div class="t-main">
+              <p class="t-kicker">Inventory provider</p>
+              <h3 class="t-price">Free</h3>
+              <ul>
+                <li>List props, costumes, sets and gear</li>
+                <li>Set your own weekly rate, or lend for free</li>
+                <li>Approve every request yourself</li>
+                <li>Reach productions that never knew you existed</li>
+              </ul>
+              <a class="btn btn-ghost" href="#pilot" data-role="provider">List your inventory <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="t-stub" aria-hidden="true"><span>No. 0002</span><span>Provider pass</span></div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section section-dark" id="pilot">
+    <!-- CUE 06 -->
+    <section class="section section-desk" id="pilot">
       <div class="wrap pilot">
         <div class="pilot-copy">
-          <h2>Join the Austin pilot</h2>
-          <p>We're starting with <strong>5 inventory providers</strong> and <strong>10 production teams</strong> this season. Pilot members get the production pass free for their first show and a direct line to us while we build.</p>
-          <div class="goal" aria-label="Pilot goals">
-            <div><span class="goal-n">5</span><span>inventory providers</span></div>
-            <div><span class="goal-n">10</span><span>production teams</span></div>
+          <header class="cue-head">
+            <span class="cue">Cue 06</span>
+            <h2>Sign up for <em>the Austin pilot.</em></h2>
+          </header>
+          <p>We're starting small on purpose: <strong>5 inventory providers</strong> and <strong>10 production teams</strong> this season. Pilot members get the production pass free for their first show and a direct line to us while we build.</p>
+          <div class="goals">
+            <div><span class="g-n">5</span><span class="g-l">providers</span></div>
+            <div><span class="g-n">10</span><span class="g-l">productions</span></div>
+            <span class="g-hand">that could be you →</span>
           </div>
         </div>
-        <form class="pilot-form" id="pilot-form" novalidate>
-          <div class="row">
-            <label>Name<input name="name" autocomplete="name" required></label>
-            <label>Email<input name="email" type="email" autocomplete="email" required></label>
-          </div>
-          <label>Theater, school or company<input name="org" autocomplete="organization"></label>
-          <fieldset>
-            <legend>I'm joining as</legend>
-            <label class="radio"><input type="radio" name="role" value="production" checked> A production team</label>
-            <label class="radio"><input type="radio" name="role" value="provider"> An inventory provider</label>
-            <label class="radio"><input type="radio" name="role" value="both"> Both</label>
+
+        <form class="paper sheet" id="pilot-form" novalidate>
+          <p class="sheet-title">Sign-up sheet <span>Austin pilot · please print clearly</span></p>
+          <label class="line">Name<input name="name" autocomplete="name" required></label>
+          <label class="line">Email<input name="email" type="email" autocomplete="email" required></label>
+          <label class="line">Theater, school or company<input name="org" autocomplete="organization"></label>
+          <fieldset class="line-set">
+            <legend>Joining as</legend>
+            <label class="box"><input type="radio" name="role" value="production" checked><span>Production team</span></label>
+            <label class="box"><input type="radio" name="role" value="provider"><span>Inventory provider</span></label>
+            <label class="box"><input type="radio" name="role" value="both"><span>Both</span></label>
           </fieldset>
-          <label>Anything we should know? <span class="opt">(optional)</span><textarea name="note" rows="3" placeholder="Next show, dates, what's in your storage room..."></textarea></label>
+          <label class="line">Next show, dates, what's in storage… <span class="opt">(optional)</span><textarea name="note" rows="2"></textarea></label>
           <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
-          <button class="btn" type="submit">Request a spot</button>
+          <button class="btn" type="submit">Request a spot <span aria-hidden="true">→</span></button>
           <p class="form-msg" id="pilot-msg" role="status"></p>
         </form>
       </div>
@@ -208,23 +268,19 @@
   </main>
 
   <footer class="footer">
-    <div class="wrap footer-in">
-      <div class="brand brand-foot">
-        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3v4" /><circle cx="16" cy="13" r="6" /><path d="M13 19h6l-1 8h-4z" /><path d="M10 29h12" /></svg>
-        <span>StageSource</span>
+    <div class="wrap">
+      <p class="foot-mark" aria-hidden="true">StageSource</p>
+      <div class="foot-row">
+        <p class="foot-serif">Made in Austin. <em>Keep the ghost light on.</em></p>
+        <p><a href="mailto:purnoor.sharma@utexas.edu?subject=StageSource">Get in touch</a></p>
       </div>
-      <p>Made in Austin, TX. Keep the ghost light on.</p>
-      <p><a href="mailto:purnoor.sharma@utexas.edu?subject=StageSource">Get in touch</a></p>
     </div>
   </footer>
 
   <div class="tray" id="tray" hidden>
     <div class="tray-in">
-      <div>
-        <strong id="tray-count">0 items</strong> requested
-        <span class="tray-sum" id="tray-sum"></span>
-      </div>
-      <a class="btn btn-small" href="#pilot">Send requests</a>
+      <div><strong id="tray-count">0 items</strong> on hold <span class="tray-sum" id="tray-sum"></span></div>
+      <a class="tray-btn" href="#pilot">Send requests →</a>
     </div>
   </div>
 </body>
