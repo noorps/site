@@ -1,6 +1,6 @@
-import { LISTINGS, PROVIDERS, CATEGORY_LABELS } from "./inventory.js";
-import { buildChecklist, matchListings } from "./checklist.js";
-import { SAMPLE_SCRIPT } from "./sample.js";
+import { LISTINGS, PROVIDERS, CATEGORY_LABELS } from "./inventory.js?v=4";
+import { buildChecklist, matchListings } from "./checklist.js?v=4";
+import { SAMPLE_SCRIPT } from "./sample.js?v=4";
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);

@@ -10,11 +10,12 @@
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#f1ebe0">
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Caveat:wght@500;700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <script type="module" src="js/app.js"></script>
+  <link rel="preload" href="fonts/ultra-normal-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/pinyon-script-normal-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/bodoni-moda-italic-400-900.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css?v=4">
+  <link rel="stylesheet" href="css/style.css?v=4">
+  <script type="module" src="js/app.js?v=4"></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -27,7 +28,7 @@
 
   <header class="nav">
     <div class="wrap nav-in">
-      <a class="wordmark" href="#top" aria-label="StageSource home">Stage<span>Source</span></a>
+      <a class="wordmark" href="#top" aria-label="StageSource home"><span class="wm-stage">Stage</span><span class="wm-source">Source</span></a>
       <nav class="nav-links" aria-label="Main">
         <a href="#how">How</a>
         <a href="#try">Try it</a>
@@ -44,10 +45,12 @@
       <div class="wrap hero-grid">
         <div class="hero-copy">
           <p class="label">A rental marketplace for theater &amp; film · Austin, TX</p>
-          <h1>
-            <span class="h-marquee">Every prop</span>
-            <span class="h-serif">deserves a</span>
-            <span class="h-marquee h-hot">second act.</span>
+          <h1 class="playbill" aria-label="Every prop deserves a second act.">
+            <span class="pb-every" aria-hidden="true">Every</span>
+            <span class="pb-prop" aria-hidden="true">PROP</span>
+            <span class="pb-row" aria-hidden="true"><span class="pb-deserves">deserves a</span><span class="pb-orn">✺</span></span>
+            <span class="pb-second" aria-hidden="true">Second</span>
+            <span class="pb-act" aria-hidden="true">Act.<svg class="pb-swash" viewBox="0 0 300 30" preserveAspectRatio="none"><path d="M4 22 C 70 6, 150 30, 296 8" /></svg></span>
           </h1>
           <p class="lede">Small theater companies spend weeks and real money hunting for things that already sit in a storage room across town. StageSource reads your script, builds the sourcing list, and finds who nearby can lend it.</p>
           <div class="cta-row">
@@ -269,7 +272,7 @@
 
   <footer class="footer">
     <div class="wrap">
-      <p class="foot-mark" aria-hidden="true">StageSource</p>
+      <p class="foot-mark" aria-hidden="true"><span class="wm-stage">Stage</span><span class="wm-source">Source</span></p>
       <div class="foot-row">
         <p class="foot-serif">Made in Austin. <em>Keep the ghost light on.</em></p>
         <p><a href="mailto:purnoor.sharma@utexas.edu?subject=StageSource">Get in touch</a></p>
