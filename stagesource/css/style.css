@@ -61,7 +61,7 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; }
 .nav-links { display: flex; gap: 26px; margin-left: auto; }
 .nav-links a { font-size: .82rem; text-decoration: none; padding: 4px 0; border-bottom: 2px solid transparent; }
 .nav-links a:hover { border-color: var(--hot); }
-.tape { position: relative; display: inline-block; padding: 9px 18px 8px; background: var(--hot); color: var(--ink); font: 800 1.02rem/1 var(--sans); font-stretch: 75%; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; transform: rotate(-2deg);
+.tape { position: relative; display: inline-block; padding: 9px 18px 8px; background: var(--hot); color: var(--ink); font: 800 1.02rem/1 var(--sans); font-stretch: 75%; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; white-space: nowrap; transform: rotate(-2deg);
   clip-path: polygon(2% 8%, 7% 0, 13% 7%, 20% 1%, 28% 6%, 36% 0, 45% 5%, 55% 0, 64% 6%, 73% 1%, 82% 7%, 91% 0, 98% 6%, 100% 50%, 98% 94%, 90% 100%, 82% 93%, 72% 99%, 63% 94%, 54% 100%, 44% 95%, 35% 100%, 26% 94%, 18% 100%, 9% 94%, 3% 100%, 0 50%); }
 .tape:hover { transform: rotate(0deg) scale(1.04); }
 @media (max-width: 760px) { .nav-links { display: none; } .nav-in > .tape { margin-left: auto; } }
@@ -79,9 +79,9 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; }
 .tape-piece { position: absolute; top: -14px; left: 50%; width: 120px; height: 28px; transform: translateX(-50%) rotate(-3deg); background: rgba(255, 75, 31, .85); clip-path: polygon(3% 0, 97% 4%, 100% 50%, 96% 100%, 2% 96%, 0 50%); }
 .page-head { display: flex; justify-content: space-between; font-size: .68rem; color: var(--muted); margin-bottom: 18px; }
 .sl { font-weight: 700; margin-bottom: 10px; }
-.ln { display: grid; grid-template-columns: minmax(0, 1fr) 128px; gap: 14px; align-items: start; margin-bottom: 8px; }
+.ln { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px; align-items: start; margin-bottom: 8px; }
 .ln p { margin: 0; }
-.note { font: 400 1.32rem/1 var(--hand); color: var(--pencil); text-transform: none; letter-spacing: 0; transform: rotate(-2deg); padding-top: 2px; }
+.note { font: 400 1.32rem/1 var(--hand); color: var(--pencil); text-transform: none; letter-spacing: 0; white-space: nowrap; transform: rotate(-2deg); padding-top: 2px; }
 .dlg { margin: 6px 0 12px 22%; }
 .dlg span { display: block; margin-left: 18%; }
 mark { background: linear-gradient(100deg, transparent 2%, var(--marker) 4%, var(--marker) 95%, transparent 98%); padding: 0 2px; color: inherit; }
@@ -201,8 +201,6 @@ h2 em { text-transform: none; font-size: 1.05em; letter-spacing: -.01em; display
 .tag-rate { font: 400 1.55rem/1 var(--deco); }
 .tag-rate.free { color: var(--blue); }
 .tag-new { display: block; font: 400 .7rem var(--type); color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-top: 3px; }
-.note-inv { margin-top: 26px; }
-.note { }
 #inv-note { margin-top: 26px; font: 400 .78rem var(--type); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
 
 /* ---------- why (blue) ---------- */
@@ -243,8 +241,7 @@ h2 em { text-transform: none; font-size: 1.05em; letter-spacing: -.01em; display
 .goals div:nth-child(2) .g-n { color: var(--hot); }
 .g-l { font: 400 .78rem var(--type); text-transform: uppercase; letter-spacing: .1em; }
 .g-hand { font: 400 2.1rem var(--hand); color: var(--pencil); transform: rotate(-4deg); margin-bottom: 10px; }
-.sheet { padding: 30px clamp(20px, 3vw, 36px) 30px; display: grid; gap: 4px;
-  background-image: linear-gradient(var(--sheet), var(--sheet)); }
+.sheet { padding: 30px clamp(20px, 3vw, 36px); display: grid; gap: 4px; }
 .sheet-title { font: 400 1.7rem/1 var(--wood); text-transform: uppercase; border-bottom: 3px double var(--ink); padding-bottom: 12px; margin-bottom: 10px; display: flex; flex-direction: column; gap: 6px; }
 .sheet-title span { font-size: .7rem; font-weight: 400; color: var(--muted); }
 .line { display: block; font: 400 .74rem var(--type); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); padding-top: 10px; }
@@ -300,5 +297,4 @@ h2 em { text-transform: none; font-size: 1.05em; letter-spacing: -.01em; display
 .pb-swash { position: absolute; left: -4%; bottom: -.06em; width: 110%; height: .26em; fill: none; stroke: var(--hot); stroke-width: 5; stroke-linecap: round; }
 @supports not (-webkit-text-stroke: 1px black) { .pb-second { color: var(--ink); text-shadow: none; } }
 @media (max-width: 520px) { .pb-second { -webkit-text-stroke-width: 1.4px; text-shadow: 4px 4px 0 var(--marker); margin-left: .12em; } .pb-act { margin-left: .9em; } }
-.tape { white-space: nowrap; }
 @media (max-width: 420px) { .tape { font-size: .88rem; padding: 8px 12px 7px; } .wm-stage { font-size: 1.9rem; } .wm-source { font-size: 1.2rem; } }
