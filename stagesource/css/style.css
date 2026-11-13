@@ -390,3 +390,6 @@ h2 em { text-transform: none; font-size: 1.05em; letter-spacing: -.01em; display
 [hidden] { display: none !important; }
 .desk-stats b { font-family: var(--wood); font-size: 1.9rem; }
 .line input::placeholder, .line textarea::placeholder { color: #b9ae9c; opacity: 1; }
+/* Pinyon Script ships in one hairline weight; thicken the big script words so they read. */
+.pb-every, .wm-stage { -webkit-text-stroke: .03em currentColor; paint-order: stroke fill; }
+.foot-mark .wm-stage { -webkit-text-stroke-width: .026em; }
