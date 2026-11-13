@@ -1,6 +1,6 @@
 // The request slip: review held items, pick dates, send one request per provider.
-import { PROVIDERS } from "./inventory.js?v=6";
-import { draftByProvider, createRequests, getMode, listingById } from "./store.js?v=6";
+import { PROVIDERS } from "./inventory.js?v=7";
+import { draftByProvider, createRequests, getMode, listingById } from "./store.js?v=7";
 
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 const money = (n) => `$${Math.round(n).toLocaleString()}`;
