@@ -1,6 +1,7 @@
 // Shared rendering for request slips (renter page and provider desk).
-import { PROVIDERS } from "./inventory.js?v=8";
-import { STATUS } from "./store.js?v=8";
+import { PROVIDERS } from "./inventory.js?v=9";
+import { STATUS, quoteFor, canPay } from "./store.js?v=9";
+import { dollars } from "./pricing.js?v=9";
 
 export const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 export const money = (n) => `$${Math.round(n).toLocaleString()}`;
@@ -14,15 +15,31 @@ const BY_LABEL = { production: "production", provider: "provider" };
  * One rental slip.
  * opts.side: "production" | "provider"; opts.moves: allowed next statuses.
  */
-export function slipCard(r, { side, moves = [] }) {
+export function slipCard(r, { side, moves = [], extra = "" }) {
   const p = PROVIDERS[r.providerId] || { name: r.providerId, hood: "", miles: "" };
   const st = STATUS[r.status] || { label: r.status, hint: "" };
   const who =
     side === "provider"
       ? `<p class="rq-who"><b>${esc(r.production)}</b> · ${esc(r.contactName)} · <a href="mailto:${esc(r.contactEmail)}">${esc(r.contactEmail)}</a></p>`
       : `<p class="rq-who"><b>${esc(p.name)}</b> · ${esc(p.hood)}${p.miles ? ` · ${p.miles} mi` : ""}</p>`;
-  const actions = moves.length
-    ? `<div class="rq-actions">${moves
+  const paid = r.payment?.status === "paid";
+  const free = quoteFor(r, false).total === 0;
+  let money_line = "";
+  if (["approved", "picked_up", "returned"].includes(r.status) || paid) {
+    if (side === "provider") {
+      const payout = quoteFor(r, false).providerPayout;
+      money_line = paid ? `<p class="rq-pay paid">Paid · you receive ${dollars(payout)}</p>` : free ? `<p class="rq-pay">Free borrow · nothing to collect</p>` : `<p class="rq-pay">Awaiting payment · you'll receive ${dollars(payout)}</p>`;
+    } else {
+      money_line = paid
+        ? `<p class="rq-pay paid">Paid ${dollars(r.payment.amount)} · <a href="pay.html?id=${encodeURIComponent(r.id)}">receipt</a></p>`
+        : free
+          ? `<p class="rq-pay">Free borrow · nothing to pay</p>`
+          : "";
+    }
+  }
+  const payBtn = side === "production" && canPay(r) && !free ? `<a class="btn btn-sm" href="pay.html?id=${encodeURIComponent(r.id)}">Pay &amp; confirm</a>` : "";
+  const actions = moves.length || payBtn
+    ? `<div class="rq-actions">${payBtn}${moves
         .map((m) => `<button type="button" class="${m === "declined" || m === "cancelled" ? "req" : "btn btn-sm"}" data-move="${m}" data-id="${esc(r.id)}">${ACTION_LABEL[m]}</button>`)
         .join("")}</div>`
     : "";
@@ -43,7 +60,9 @@ export function slipCard(r, { side, moves = [] }) {
       <ol class="rq-timeline">${r.history
         .map((h) => `<li><b>${esc(STATUS[h.status]?.label || h.status)}</b> <span>${fmtWhen(h.at)} · by ${BY_LABEL[h.by] || esc(h.by)}</span>${h.note ? `<em> “${esc(h.note)}”</em>` : ""}</li>`)
         .join("")}</ol>
+      ${money_line}
       <p class="rq-hint">${esc(st.hint)}</p>
+      ${extra}
     </div>
     ${actions}
   </article>`;

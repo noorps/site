@@ -1,6 +1,6 @@
-import { LISTINGS, PROVIDERS, CATEGORY_LABELS } from "./inventory.js?v=8";
-import { providerRequests, updateStatus, addListing, getMode, loadListings, PROVIDER_MOVES, rememberDesk, lastDesk } from "./store.js?v=8";
-import { slipCard, esc, money } from "./cards.js?v=8";
+import { LISTINGS, PROVIDERS, CATEGORY_LABELS } from "./inventory.js?v=9";
+import { providerRequests, updateStatus, addListing, getMode, loadListings, PROVIDER_MOVES, rememberDesk, lastDesk, listReviews } from "./store.js?v=9";
+import { slipCard, esc, money } from "./cards.js?v=9";
 
 const $ = (s) => document.querySelector(s);
 const sel = $("#desk-provider");
@@ -90,6 +90,17 @@ function renderShelf() {
     : `<div class="rq-empty"><p class="empty-title">Empty shelf</p><p class="empty-hand">list your first item →</p></div>`;
 }
 
+/* ---------- reviews ---------- */
+async function renderReviewsPane() {
+  const mine = (await listReviews()).filter((v) => v.providerId === provider());
+  $("#count-reviews").textContent = mine.length || "";
+  $("#pane-reviews").innerHTML = mine.length
+    ? `<div class="rv-grid">${mine
+        .map((v) => `<figure class="rv-card"><span class="rv-rating" aria-label="${v.stars} out of 5">${"✶".repeat(v.stars)}<span class="rv-off">${"✶".repeat(5 - v.stars)}</span></span><blockquote>“${esc(v.text)}”</blockquote><figcaption><span class="rv-name">${esc(v.name)}</span><span class="rv-role">${esc(v.production)}</span></figcaption></figure>`)
+        .join("")}</div>`
+    : `<div class="rq-empty"><p class="empty-title">No reviews yet</p><p class="empty-hand">productions can review once a rental is returned</p></div>`;
+}
+
 /* ---------- list an item ---------- */
 $("#list-form").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -113,6 +124,7 @@ $("#list-form").addEventListener("submit", async (e) => {
 async function refresh() {
   rememberDesk(provider());
   renderShelf();
+  renderReviewsPane();
   await renderIncoming();
 }
 sel.addEventListener("change", refresh);

@@ -8,9 +8,9 @@
   <meta name="theme-color" content="#f1ebe0">
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/ultra-normal-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/fonts.css?v=8">
-  <link rel="stylesheet" href="css/style.css?v=8">
-  <script type="module" src="js/desk.js?v=8"></script>
+  <link rel="stylesheet" href="css/fonts.css?v=9">
+  <link rel="stylesheet" href="css/style.css?v=9">
+  <script type="module" src="js/desk.js?v=9"></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -48,12 +48,14 @@
         <div class="tabs" role="tablist" aria-label="Desk sections">
           <button type="button" class="tab" role="tab" data-pane="incoming" aria-pressed="true">Requests <span class="tab-count" id="count-incoming"></span></button>
           <button type="button" class="tab" role="tab" data-pane="listings" aria-pressed="false">Your shelf <span class="tab-count" id="count-listings"></span></button>
+          <button type="button" class="tab" role="tab" data-pane="reviews" aria-pressed="false">Reviews <span class="tab-count" id="count-reviews"></span></button>
           <button type="button" class="tab" role="tab" data-pane="list" aria-pressed="false" id="list">List an item</button>
         </div>
       </div>
 
       <section class="pane" id="pane-incoming" aria-live="polite"></section>
       <section class="pane" id="pane-listings" hidden></section>
+      <section class="pane" id="pane-reviews" hidden></section>
       <section class="pane" id="pane-list" hidden>
         <form class="paper sheet list-form" id="list-form" novalidate>
           <p class="sheet-title">New listing <span>Goes on the shelf as soon as you save it</span></p>
