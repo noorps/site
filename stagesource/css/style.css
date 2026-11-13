@@ -452,3 +452,4 @@ h2 em { text-transform: none; font-size: 1.05em; letter-spacing: -.01em; display
 .ticket .bo-lines li { padding-left: 0; }
 .ticket .bo-lines li::before { content: none; }
 .bo-stamp { align-self: flex-start; }
+@media (min-width: 720px) { .rv-featured { grid-column: span 2; padding: 38px 40px 32px; } .rv-featured blockquote { font-size: clamp(1.7rem, 2.6vw, 2.3rem); line-height: 1.25; } }

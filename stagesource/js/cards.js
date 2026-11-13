@@ -1,7 +1,7 @@
 // Shared rendering for request slips (renter page and provider desk).
-import { PROVIDERS } from "./inventory.js?v=9";
-import { STATUS, quoteFor, canPay } from "./store.js?v=9";
-import { dollars } from "./pricing.js?v=9";
+import { PROVIDERS } from "./inventory.js?v=10";
+import { STATUS, quoteFor, canPay } from "./store.js?v=10";
+import { dollars } from "./pricing.js?v=10";
 
 export const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 export const money = (n) => `$${Math.round(n).toLocaleString()}`;
