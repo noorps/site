@@ -1,10 +1,21 @@
-import { LISTINGS, PROVIDERS, CATEGORY_LABELS } from "./inventory.js?v=11";
-import { buildChecklist, matchListings } from "./checklist.js?v=11";
-import { SAMPLE_SCRIPT } from "./sample.js?v=11";
-import { loadListings, listingById, busyListingIds, myRequests } from "./store.js?v=11";
-import { openSlip } from "./slip.js?v=11";
-import { renderReviews } from "./reviews.js?v=11";
-import { packBox, STYLE_LABEL } from "./propbox.js?v=11";
+import { LISTINGS, PROVIDERS, CATEGORY_LABELS } from "./inventory.js?v=12";
+import { buildChecklist, matchListings } from "./checklist.js?v=12";
+import { SAMPLE_SCRIPT } from "./sample.js?v=12";
+import { loadListings, listingById, busyListingIds, myRequests } from "./store.js?v=12";
+import { openSlip } from "./slip.js?v=12";
+import { renderReviews } from "./reviews.js?v=12";
+import { packBox, STYLE_LABEL } from "./propbox.js?v=12";
+
+// ?reset=1 wipes this browser's demo data (requests, payments, reviews, listings, budget).
+if (new URLSearchParams(location.search).has("reset")) {
+  try {
+    localStorage.removeItem("stagesource:v1");
+    localStorage.removeItem("stagesource:budget");
+  } catch {
+    /* storage blocked: nothing to clear */
+  }
+  history.replaceState(null, "", location.pathname + location.hash);
+}
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);

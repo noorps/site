@@ -3,9 +3,9 @@
 // sales plus community donations, and every dollar spent on materials is a dollar not paid
 // to actors. So: track rental spend against the budget, and give producers a one-page
 // savings report to hand back to the donors who funded the show.
-import { listingById } from "./store.js?v=11";
-import { PROVIDERS } from "./inventory.js?v=11";
-import { esc, money } from "./cards.js?v=11";
+import { listingById } from "./store.js?v=12";
+import { PROVIDERS } from "./inventory.js?v=12";
+import { esc, money } from "./cards.js?v=12";
 
 const KEY = "stagesource:budget";
 const live = (r) => !["declined", "cancelled"].includes(r.status);

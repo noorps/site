@@ -2,7 +2,7 @@
 // Added after an interview with an improv performer at The Fallout Theater, who said her
 // troupe would have used more props, and found more scenes, if borrowing them were easy.
 // Picks versatile pieces from nearby inventory: free first, then cheapest, then closest.
-import { LISTINGS, PROVIDERS } from "./inventory.js?v=11";
+import { LISTINGS, PROVIDERS } from "./inventory.js?v=12";
 
 const POOLS = {
   // Open-ended objects that can be anything in a scene.

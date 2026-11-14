@@ -1,6 +1,6 @@
-import { myRequests, updateStatus, getMode, RENTER_MOVES, loadListings, addReview, reviewedIds } from "./store.js?v=11";
-import { slipCard, esc } from "./cards.js?v=11";
-import { mountBudget } from "./budget.js?v=11";
+import { myRequests, updateStatus, getMode, RENTER_MOVES, loadListings, addReview, reviewedIds } from "./store.js?v=12";
+import { slipCard, esc } from "./cards.js?v=12";
+import { mountBudget } from "./budget.js?v=12";
 
 const list = document.getElementById("rq-list");
 const paintBudget = mountBudget(() => myRequests().catch(() => []));
