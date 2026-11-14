@@ -1,7 +1,7 @@
-import { PROVIDERS } from "./inventory.js?v=10";
-import { getRequest, getMode, loadListings, quoteFor, canPay, startCheckout, payDemo } from "./store.js?v=10";
-import { dollars, PROTECTION_RATE } from "./pricing.js?v=10";
-import { esc } from "./cards.js?v=10";
+import { PROVIDERS } from "./inventory.js?v=11";
+import { getRequest, getMode, loadListings, quoteFor, canPay, startCheckout, payDemo } from "./store.js?v=11";
+import { dollars, PROTECTION_RATE } from "./pricing.js?v=11";
+import { esc } from "./cards.js?v=11";
 
 const root = document.getElementById("pay-root");
 const params = new URLSearchParams(location.search);

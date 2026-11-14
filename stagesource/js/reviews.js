@@ -1,9 +1,9 @@
 // "From the wings": reviews section on the home page.
 // Featured quotes are real words from real people, added with their OK.
 // A card only shows once its quote is filled in.
-import { PROVIDERS } from "./inventory.js?v=10";
-import { listReviews } from "./store.js?v=10";
-import { esc } from "./cards.js?v=10";
+import { PROVIDERS } from "./inventory.js?v=11";
+import { listReviews } from "./store.js?v=11";
+import { esc } from "./cards.js?v=11";
 
 export const FEATURED = [
   {

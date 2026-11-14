@@ -13,9 +13,9 @@
   <link rel="preload" href="fonts/ultra-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/pinyon-script-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/bodoni-moda-italic-400-900.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/fonts.css?v=10">
-  <link rel="stylesheet" href="css/style.css?v=10">
-  <script type="module" src="js/app.js?v=10"></script>
+  <link rel="stylesheet" href="css/fonts.css?v=11">
+  <link rel="stylesheet" href="css/style.css?v=11">
+  <script type="module" src="js/app.js?v=11"></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -118,10 +118,18 @@
         <header class="cue-head">
           <span class="cue">Cue 02</span>
           <h2>Hand us a script. <em>Watch it get sourced.</em></h2>
-          <p class="cue-sub">Paste a scene or use our sample one-act. Items are matched against the Austin pilot's sample inventory.</p>
+          <p class="cue-sub">Paste a scene or use our sample one-act. No script, because it's improv or sketch? Pack a prop box instead. Items are matched against the Austin pilot's sample inventory.</p>
         </header>
 
+        <div class="filters mode-bar">
+          <div class="tabs" role="tablist" aria-label="How do you want to start?">
+            <button type="button" class="tab" role="tab" data-mode="script" aria-pressed="true">I have a script</button>
+            <button type="button" class="tab" role="tab" data-mode="box" aria-pressed="false">No script: improv &amp; sketch</button>
+          </div>
+        </div>
+
         <div class="demo">
+          <div class="demo-left">
           <form class="paper paper-script" id="script-form">
             <div class="holes" aria-hidden="true"><i></i><i></i><i></i></div>
             <div class="paper-bar">
@@ -137,6 +145,26 @@
               <button class="btn" type="submit" id="run">Build my checklist <span aria-hidden="true">→</span></button>
             </div>
           </form>
+
+          <form class="paper paper-script box-form" id="box-form" hidden>
+            <div class="holes" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="paper-bar"><label for="box-style">Prop box</label></div>
+            <p class="box-pitch">Props spark scenes. Tell us about the show and we'll pack a box of versatile, cheap props from nearby, free ones first.</p>
+            <label class="line">Show style
+              <select id="box-style" name="style">
+                <option value="improv">Improv</option>
+                <option value="sketch">Sketch comedy</option>
+                <option value="variety">Variety / stand-up night</option>
+              </select>
+            </label>
+            <label class="line">Performers on stage<input id="box-cast" name="cast" type="number" min="1" max="20" value="6"></label>
+            <label class="line">Budget for props ($ per week, optional)<input id="box-budget" name="budget" type="number" min="0" step="5" placeholder="40"></label>
+            <div class="paper-actions">
+              <span class="count">versatile props · free first</span>
+              <button class="btn" type="submit">Pack my prop box <span aria-hidden="true">→</span></button>
+            </div>
+          </form>
+          </div>
 
           <div class="paper paper-list" id="output" aria-live="polite">
             <div class="empty">
@@ -159,7 +187,10 @@
         </header>
         <div class="filters">
           <div class="tabs" id="inv-chips" role="group" aria-label="Filter by category"></div>
-          <input type="search" id="inv-search" placeholder="search: chaise, fedora, fog…" aria-label="Search inventory">
+          <div class="inv-tools">
+            <label class="box free-only"><input type="checkbox" id="inv-free"><span>Free to borrow only</span></label>
+            <input type="search" id="inv-search" placeholder="search: chaise, fedora, fog…" aria-label="Search inventory">
+          </div>
         </div>
         <div class="tags" id="inv-grid"></div>
         <button type="button" class="btn btn-ghost more" id="inv-more" hidden>Show all listings</button>

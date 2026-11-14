@@ -1,7 +1,9 @@
-import { myRequests, updateStatus, getMode, RENTER_MOVES, loadListings, addReview, reviewedIds } from "./store.js?v=10";
-import { slipCard, esc } from "./cards.js?v=10";
+import { myRequests, updateStatus, getMode, RENTER_MOVES, loadListings, addReview, reviewedIds } from "./store.js?v=11";
+import { slipCard, esc } from "./cards.js?v=11";
+import { mountBudget } from "./budget.js?v=11";
 
 const list = document.getElementById("rq-list");
+const paintBudget = mountBudget(() => myRequests().catch(() => []));
 
 const reviewForm = (r) => `
   <form class="rv-form" data-review="${esc(r.id)}">
@@ -17,6 +19,7 @@ const reviewForm = (r) => `
 async function render() {
   await loadListings();
   if ((await getMode()) === "local") document.getElementById("demo-note").hidden = false;
+  paintBudget();
   let reqs;
   try {
     reqs = await myRequests();
