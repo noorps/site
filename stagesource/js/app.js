@@ -1,9 +1,10 @@
-import { LISTINGS, PROVIDERS, CATEGORY_LABELS } from "./inventory.js?v=10";
-import { buildChecklist, matchListings } from "./checklist.js?v=10";
-import { SAMPLE_SCRIPT } from "./sample.js?v=10";
-import { loadListings, listingById, busyListingIds, myRequests } from "./store.js?v=10";
-import { openSlip } from "./slip.js?v=10";
-import { renderReviews } from "./reviews.js?v=10";
+import { LISTINGS, PROVIDERS, CATEGORY_LABELS } from "./inventory.js?v=11";
+import { buildChecklist, matchListings } from "./checklist.js?v=11";
+import { SAMPLE_SCRIPT } from "./sample.js?v=11";
+import { loadListings, listingById, busyListingIds, myRequests } from "./store.js?v=11";
+import { openSlip } from "./slip.js?v=11";
+import { renderReviews } from "./reviews.js?v=11";
+import { packBox, STYLE_LABEL } from "./propbox.js?v=11";
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
@@ -175,6 +176,48 @@ function renderChecklist(result, seconds) {
     <p class="pl-foot">${via} *Estimate for a four-week run against each item's cost to buy new, using sample pilot listings.</p>`;
 }
 
+/* ---------- No script: prop box (improv & sketch) ---------- */
+const scriptForm = $("#script-form");
+const boxForm = $("#box-form");
+document.querySelectorAll("[data-mode]").forEach((t) =>
+  t.addEventListener("click", () => {
+    const box = t.dataset.mode === "box";
+    document.querySelectorAll("[data-mode]").forEach((x) => x.setAttribute("aria-pressed", String(x === t)));
+    scriptForm.hidden = box;
+    boxForm.hidden = !box;
+  }),
+);
+
+boxForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const box = packBox({ style: $("#box-style").value, cast: Number($("#box-cast").value) || 6, budget: $("#box-budget").value });
+  out.classList.add("has-result");
+  out.scrollTop = 0;
+  const rows = box.items
+    .map((l) => {
+      const p = PROVIDERS[l.p];
+      return `<div class="pl-item"><span class="pl-box ticked" aria-hidden="true"></span><div><span class="pl-name">${esc(l.title)}</span></div><div class="pl-matches"><div class="pl-match"><div><span class="pl-m-title">${esc(CATEGORY_LABELS[l.cat])} · ${esc(l.cond)}</span><span class="pl-m-where">${esc(p.name)} · ${esc(p.hood)} · ${p.miles} mi</span></div><span class="pl-m-price">${rateText(l)}</span>${reqButton(l.id)}</div></div></div>`;
+    })
+    .join("");
+  out.innerHTML = `
+    <div class="pl-head">
+      <div><p class="pl-kicker">Prop box · ${box.items.length} pieces for ${box.cast} performer${box.cast === 1 ? "" : "s"}</p><h3 class="pl-title">${STYLE_LABEL[box.style]} box</h3></div>
+      <div class="pl-stats">
+        <div class="pl-stat"><b>${money(box.weekly)}</b><span>per week, all of it</span></div>
+        <div class="pl-stat"><b class="hot">${box.free}</b><span>free to borrow</span></div>
+      </div>
+    </div>
+    <div class="box-actions"><button type="button" class="btn btn-sm" id="hold-box">Hold the whole box</button><span class="pl-foot">about ${money(box.buyNew)} if you bought it all new</span></div>
+    ${rows}
+    <p class="pl-foot">Versatile pieces that can be anything in a scene, free ones first, then the cheapest and closest.</p>`;
+  $("#hold-box").addEventListener("click", () => {
+    box.items.forEach((l) => requested.add(l.id));
+    syncButtons();
+    updateTray();
+    $("#hold-box").textContent = "Box on hold ✓";
+  });
+});
+
 /* ---------- Inventory browser ---------- */
 const grid = $("#inv-grid");
 const chips = $("#inv-chips");
@@ -202,11 +245,13 @@ chips.addEventListener("click", (e) => {
   renderGrid();
 });
 search.addEventListener("input", renderGrid);
+const freeOnly = $("#inv-free");
+freeOnly.addEventListener("change", renderGrid);
 
 function renderGrid() {
   const q = search.value.trim().toLowerCase();
-  const list = LISTINGS.filter((l) => (activeCat === "all" || l.cat === activeCat) && (!q || `${l.title} ${l.tags.join(" ")} ${PROVIDERS[l.p].name}`.toLowerCase().includes(q)));
-  const browsing = activeCat === "all" && !q && !showAll;
+  const list = LISTINGS.filter((l) => (activeCat === "all" || l.cat === activeCat) && (!freeOnly.checked || l.rate === 0) && (!q || `${l.title} ${l.tags.join(" ")} ${PROVIDERS[l.p].name}`.toLowerCase().includes(q)));
+  const browsing = activeCat === "all" && !q && !freeOnly.checked && !showAll;
   moreBtn.hidden = !browsing || list.length <= PREVIEW;
   if (!moreBtn.hidden) moreBtn.textContent = `Show all ${list.length} listings`;
   grid.innerHTML = (browsing ? list.slice(0, PREVIEW) : list)

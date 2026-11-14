@@ -8,9 +8,9 @@
   <meta name="theme-color" content="#f1ebe0">
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/ultra-normal-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/fonts.css?v=10">
-  <link rel="stylesheet" href="css/style.css?v=10">
-  <script type="module" src="js/requests-page.js?v=10"></script>
+  <link rel="stylesheet" href="css/fonts.css?v=11">
+  <link rel="stylesheet" href="css/style.css?v=11">
+  <script type="module" src="js/requests-page.js?v=11"></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -36,6 +36,19 @@
         <p class="cue-sub">Every rental you've asked for, one slip per provider. Statuses update as providers respond.</p>
       </header>
       <p class="slip-demo" id="demo-note" hidden>Demo mode: requests live in this browser. Open the <a href="desk.html">provider desk</a> to approve them as the theater would.</p>
+      <section class="paper budget" id="budget" aria-labelledby="budget-title">
+        <div class="budget-head">
+          <div><p class="slip-kicker">For producers</p><h3 class="slip-title" id="budget-title">Show budget</h3></div>
+          <button type="button" class="btn btn-sm" id="donor-btn">Print donor report</button>
+        </div>
+        <div class="budget-grid">
+          <label class="line">Production<input id="bud-show" placeholder="The Last Train to Lockhart"></label>
+          <label class="line">Total budget ($)<input id="bud-total" type="number" min="0" step="50" placeholder="1500"></label>
+        </div>
+        <div class="budget-stats" id="budget-stats"></div>
+        <p class="budget-note">Most small shows run on ticket sales and community donations. This shows how much renting instead of buying leaves for your cast and crew.</p>
+      </section>
+      <div class="donor-report" id="donor-report" aria-hidden="true"></div>
       <div class="rq-list" id="rq-list" aria-live="polite"><p class="loading-hand">pulling your slips…</p></div>
     </div>
   </main>
