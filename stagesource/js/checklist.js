@@ -1,7 +1,7 @@
 // Checklist building and inventory matching.
 // buildChecklist() asks the server (Claude) first and falls back to a
 // keyword pass in the browser so the demo still works without the API.
-import { LISTINGS, PROVIDERS } from "./inventory.js?v=11";
+import { LISTINGS, PROVIDERS } from "./inventory.js?v=12";
 
 // Keyword fallback: [display name, category, terms...]
 const LEXICON = [

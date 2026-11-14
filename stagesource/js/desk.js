@@ -1,6 +1,6 @@
-import { LISTINGS, PROVIDERS, CATEGORY_LABELS } from "./inventory.js?v=11";
-import { providerRequests, updateStatus, addListing, getMode, loadListings, PROVIDER_MOVES, rememberDesk, lastDesk, listReviews } from "./store.js?v=11";
-import { slipCard, esc, money } from "./cards.js?v=11";
+import { LISTINGS, PROVIDERS, CATEGORY_LABELS } from "./inventory.js?v=12";
+import { providerRequests, updateStatus, addListing, getMode, loadListings, PROVIDER_MOVES, rememberDesk, lastDesk, listReviews } from "./store.js?v=12";
+import { slipCard, esc, money } from "./cards.js?v=12";
 
 const $ = (s) => document.querySelector(s);
 const sel = $("#desk-provider");
