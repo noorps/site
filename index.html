@@ -161,6 +161,7 @@
       <img src="img/cuconv-featuremaps.jpg" alt="resnet18 conv1 feature maps, 64 channels from my kernel beside 64 from cudnn, visually identical" loading="lazy" width="1200" height="520">
       <figcaption>resnet18's first layer run both ways · max difference across 802,816 outputs: exactly 0</figcaption>
     </figure>
+    <p class="nums">up to 1.66x cudnn at batch 1 · faster on 5 of 6 batch-1 layers · 25–49% of cudnn on the channel-heavy layers at batch 32, where it switches to winograd and fft</p>
     <p class="stack">cuda, c++, nsight compute, cudnn, pytorch</p>
   </div>
 
