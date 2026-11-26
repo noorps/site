@@ -170,15 +170,16 @@
     <p>run the same trained model twice and you can get different numbers back. drift measures how far apart the two runs get, and whether it ever changes the answer. then it asks the same question of the backends you would actually deploy on: eager pytorch, torch.compile and tensorrt, at fp32 and fp16, over all ten thousand cifar-10 test images on a t4.</p>
 
     <figure>
-      <div class="bar"><span class="lbl">eager fp32</span><span class="track"><span class="fill" style="width:46.3%"></span></span><span class="val">2.505 ms</span></div>
-      <div class="bar"><span class="lbl">compile fp16</span><span class="track"><span class="fill" style="width:83.2%"></span></span><span class="val">1.395 ms</span></div>
-      <div class="bar"><span class="lbl">tensorrt</span><span class="track"><span class="fill hi" style="width:100%"></span></span><span class="val">1.161 ms</span></div>
+      <div class="bar"><span class="lbl">eager fp32</span><span class="track"><span class="fill" style="width:19.9%"></span></span><span class="val">2.651 ms</span></div>
+      <div class="bar"><span class="lbl">compile fp16</span><span class="track"><span class="fill" style="width:35.7%"></span></span><span class="val">1.477 ms</span></div>
+      <div class="bar"><span class="lbl">tensorrt fp32</span><span class="track"><span class="fill" style="width:45.1%"></span></span><span class="val">1.171 ms</span></div>
+      <div class="bar"><span class="lbl">tensorrt fp16</span><span class="track"><span class="fill hi" style="width:100%"></span></span><span class="val">0.528 ms</span></div>
       <figcaption>p50 latency at batch 1, longer bar is faster, tesla t4</figcaption>
     </figure>
 
-    <p>the ordering flips at batch 128. tensorrt becomes the slowest option measured, 3,354 img/s against eager's 3,967, while torch.compile with fp16 reaches 9,831. fp16 is also the first setting in either stage to change a prediction: the disagreement runs two to three times the smallest top-two margin and one or two images out of ten thousand come back with a different answer, where every fp32 path stays three orders of magnitude under the margin and never flips anything.</p>
+    <p>the gap widens with the batch. at 128, tensorrt in fp16 pushes 20,771 img/s against eager's 3,593 and torch.compile fp16's 9,826. fp16 is also the first setting in either stage to change a prediction. autocast moves one or two images out of ten thousand, full fp16 inside tensorrt moves up to six, and every fp32 path stays under half a percent of the margin and never flips anything. the speed and the instability come from the same place.</p>
 
-    <p class="nums">tensorrt 2.2x at batch 1 · compile fp16 2.6x at batch 128 · fp16 flips 2 of 10,000 · fp32 paths flip none · trt holds 171 mb where eager needs 454</p>
+    <p class="nums">tensorrt fp16 5.0x eager at batch 1 · 5.8x at batch 128 · fp16 flips up to 6 of 10,000 · fp32 paths flip none · stage 1 flips none across 10,000 images and 7,600 texts</p>
     <p class="stack">python, pytorch, cuda, tensorrt, cudnn, nsight compute</p>
   </div>
 
